@@ -63,6 +63,8 @@ router.post('/request_profilemodify', async (req, res) => {
     console.log(`/partner_popup/request_profilemodify`);
     console.log(req.body);
 
+    await db.Users.update({fOdds:req.body.fOdds, strCallbackURL:req.body.strCallbackURL}, {where:{strID:req.body.strID}});
+
     const objectData = {result:'OK'};
     res.send(objectData);
 });

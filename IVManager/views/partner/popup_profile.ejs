@@ -15,7 +15,7 @@
 				<th scope="row" style="background-color:lightsteelblue">아이디</th>
 				<td style="background-color:lightsteelblue">
 					
-					<input type="text" style="width:50%;" name="strID" id="strID" required="no"  message="" value="<%=user.strID%>">&nbsp;
+					<input type="text" style="width:50%;" name="strID" id="strID" required="no"  message="" value="<%=user.strID%>" readonly>&nbsp;
 					<!-- <a href="#" onclick="CheckNickname();" class="btn_red"><%=__('Duplication')%><%=__('OK')%></a> -->
 					
 				</td>
@@ -104,7 +104,7 @@
 			<tr>
 				<th scope="row">콜백 URL</th>
 				<td>
-					<input type="text" maxlength="16" name="strCallbackURL" id="strCallbackURL"required="no"  message="" style="width:90%; ime-mode:disabled" value="<%=user.strCallbackURL%>"> <span style="display:inline-block; padding-top:4px;" > </span>
+					<input type="text" maxlength="255" name="strCallbackURL" id="strCallbackURL"required="no"  message="" style="width:90%; ime-mode:disabled" value="<%=user.strCallbackURL%>"> <span style="display:inline-block; padding-top:4px;" > </span>
 				</td>
 			</tr>
 
