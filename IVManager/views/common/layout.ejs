@@ -1,0 +1,314 @@
+<% if ( iLayout == 1) { %>
+
+    <%- body %>
+
+    <%- script %>
+
+<% } else if ( iLayout == 2 ){ %>
+
+    <!doctype html>
+    <html>
+        <head>
+            <%- include('headpopup') %>
+        </head>
+        <body style="font-family:'Spoqa Han Sans Neo';">
+
+            <div class="content" style="position:relative; padding:0 10px 0 10px;">
+                <div class="list_tit" style="height:80px; padding-top:10px;">
+                    <h3>
+                        
+                            <span style="font-size:18px; font-weight:bold; position:absolute;left:50px; top:12px;"><%=user.strID%></span> 
+                        
+                </h3>
+                    <h3>
+                        <div style="text-align:right;padding-right:0px;margin-top:0px;">
+                        
+                            <span id="top_total_point_area">
+                                <font style="color:#00FFFF;font-size:15px;font-weight:bold;">보유 머니 :</font>
+                                <font style="color:yellow;font-size:15px;font-weight:bold;"><%=user.iCash%></font>
+                                <!-- &nbsp;&nbsp;
+                                <font style="color:#00FFFF;font-size:15px;font-weight:bold;">보유 포인트 :</font>
+                                <font style="color:yellow;font-size:15px;font-weight:bold;"><%=user.iPoint%></font>
+                                &nbsp;&nbsp; -->
+                            </span>
+                        </div>
+                    </h3>
+                </div>
+                <div style="padding-left:10px;margin-top:10px;margin-bottom:10px;">	
+                    <% if ( iHeaderFocus == 0 ) { %>
+                        <a href="#" class="btn_blue" id="popup_profile"><%=__('Information')%></a> &nbsp;
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_profile"><%=__('Information')%></a> &nbsp;
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 1 ) { %>                        
+                        <a href="#" class="btn_blue" id="popup_inout">지급 차감</a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_inout">지급 차감</a> &nbsp; 
+                    <% } %>
+
+                        <!-- <% if ( iHeaderFocus == 2 ) { %>
+                            <a href="#" class="btn_blue" id="popup_agentlist"><%=__('Agent')%></a> &nbsp;
+                        <% } else { %>
+                            <a href="#" class="btn_green" id="popup_agentlist"><%=__('Agent')%></a> &nbsp;
+                        <% } %>
+
+                        <% if ( iHeaderFocus == 3 ) { %>
+                            <a href="#" class="btn_blue" id="popup_shoplist"><%=__('Shop')%></a> &nbsp; 
+                        <% } else { %>
+                            <a href="#" class="btn_green" id="popup_shoplist"><%=__('Shop')%></a> &nbsp; 
+                        <% } %>
+
+                        <% if ( iHeaderFocus == 4 ) { %>
+                            <a href="#" class="btn_blue" id="popup_userlist"><%=__('User')%></a> &nbsp; 
+                        <% } else { %>
+                            <a href="#" class="btn_green" id="popup_userlist"><%=__('User')%></a> &nbsp; 
+                        <% } %>
+
+                    <% if ( iHeaderFocus == 5 ) { %>
+                        <a href="#" class="btn_blue" id='popup_charges'><%=__('Input')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_charges"><%=__('Input')%></a> &nbsp; 
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 6 ) { %>
+                        <a href="#" class="btn_blue" id='popup_exchanges'><%=__('Output')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_exchanges"><%=__('Output')%></a> &nbsp; 
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 7 ) { %>
+                        <a href="#" class="btn_blue" id='popup_points'><%=__('RecordPointExchange')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_points"><%=__('RecordPointExchange')%></a> &nbsp; 
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 8 ) { %>
+                        <a href="#" class="btn_blue" id='popup_bettingrecord'>본인 <%=__('RecordBetting')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_bettingrecord">본인 <%=__('RecordBetting')%></a> &nbsp; 
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 9 ) { %>
+                        <a href="#" class="btn_blue" id='popup_games'><%=__('Calculation')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_games"><%=__('Calculation')%></a> &nbsp; 
+                    <% } %> -->
+
+                    <!-- <% if ( iHeaderFocus == 9 ) { %>
+                        <a href="#" class="btn_blue" id='popup_memos'><%=__('Memo')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_memos"><%=__('Memo')%></a> &nbsp; 
+                    <% } %> -->
+                </div>
+
+            <%- body %>
+
+            </div>
+            <%- script %>
+        </body>
+    </html>
+
+<% } else if ( iLayout == 3 ) { %>
+
+    <!doctype html>
+    <html>
+        <head>
+            <%- include('headpopup_user') %>
+        </head>
+        <body style="font-family:'Spoqa Han Sans Neo';">
+            <div class="content" style="position:relative; padding:0 10px 0 10px;">
+                <div class="list_tit" style="height:80px; padding-top:10px;">
+                    <h3> 
+                        <!-- <span style="font-size:32px;color:yellow;font-weight:bold;padding-top:10px; font-family: 'Hahmlet', serif;">[<%=__('User')%>] &nbsp;<%=agent.strNickname%> (<%=agent.strID%>)</span>  -->
+                        <a class="btn_gray" style="font-weight:bold; font-size:18px; position:absolute; left:50px; top:25px;">▶ <%=parents.strShop%></a>
+                        <span style="font-size:18px; font-weight:bold; position:absolute;left:200px; top:12px;">[<%=__('User')%>] &nbsp;<%=agent.strNickname%> (<%=agent.strID%>)</span> 
+                    </h3>
+    
+                    <h3>
+                        <div style="text-align:right;padding-right:0px;margin-top:0px;">
+                            <span id="top_total_point_area">
+                                <font style="color:#00FFFF;font-size:15px;font-weight:bold;"><%=__('Cash')%> :</font>
+                                <font style="color:yellow;font-size:15px;font-weight:bold;"><%=agent.iCash.toLocaleString()%></font>
+                                &nbsp;&nbsp;
+                                <font style="color:#00FFFF;font-size:15px;font-weight:bold;"><%=__('Rolling')%> :</font>
+                                <font style="color:yellow;font-size:15px;font-weight:bold;"><%=parseInt(agent.iRolling).toLocaleString()%></font>
+                                &nbsp;&nbsp;
+                                <font style="color:#00FFFF;font-size:15px;font-weight:bold;"><%=__('Settle')%> :</font>
+                                <font style="color:yellow;font-size:15px;font-weight:bold;">0</font>
+                                &nbsp;&nbsp;&nbsp;
+                            </span>
+                        </div>
+                    </h3>
+
+
+                </div>
+                <div style="padding-left:10px;margin-top:10px;margin-bottom:10px;">	
+                    <% if ( iHeaderFocus == 0 ) { %>
+                        <a href="#" class="btn_blue" id="popup_userinfo"><%=__('Information')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_userinfo"><%=__('Information')%></a> &nbsp; 
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 1 ) { %>
+                        <a href="#" class="btn_blue" id="popup_input"><%=__('Input')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_input"><%=__('Input')%></a> &nbsp; 
+                    <% } %>
+    
+                    <% if ( iHeaderFocus == 2 ) { %>
+                        <a href="#" class="btn_blue" id="popup_output"><%=__('Output')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_output"><%=__('Output')%></a> &nbsp; 
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 3 ) { %>
+                        <a href="#" class="btn_blue" id="popup_pointrecord"><%=__('RecordPointExchange')%></a> &nbsp; 
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_pointrecord"><%=__('RecordPointExchange')%></a> &nbsp; 
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 4 ) { %>
+                        <a href="#" class="btn_blue" id="popup_bettingrecorduser"><%=__('RecordBetting')%></a> &nbsp;
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_bettingrecorduser"><%=__('RecordBetting')%></a> &nbsp;
+                    <% } %>
+
+                    <!-- <% if ( iHeaderFocus == 5 ) { %>
+                        <a href="#" class="btn_blue" id="popup_notelist"><%=__('Letter')%></a> &nbsp;
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_notelist"><%=__('Letter')%></a> &nbsp;
+                    <% } %>
+
+                    <% if ( iHeaderFocus == 6 ) { %>
+                        <a href="#" class="btn_blue" id="popup_memo"><%=__('Memo')%></a> &nbsp;
+                    <% } else { %>
+                        <a href="#" class="btn_green" id="popup_memo"><%=__('Memo')%></a> &nbsp;
+                    <% } %> -->
+                </div>
+            <%- body %>
+            </div>
+            <%- script %>
+    </body>
+</html>
+
+<% } else { %>
+
+<!doctype html>
+<html>
+    <head>
+        <%- include('head') %>
+    </head>
+
+<body style="font-family:'Spoqa Han Sans Neo';">
+    <div id="wrap" class="skin_type01">
+        <header id="header">
+            <nav id="gnb">
+                <ul class="clearfix">
+                    <div style="float:right;">
+
+                        <% if ( parseInt(user.iClass) == 2 || parseInt(user.iClass) == 1 ) { %>
+                            <a class="btn_thinorange" style="position:absolute;top:35px; right:15%;" href="javascript:OnClickChangeMoney('<%=user.strNickname%>', '<%=user.strGroupID%>', '<%=user.iClass%>');"><%=__('Give')%><%=__('Take')%> <%=__('Record')%></a>
+                        <%} else if ( parseInt(user.iClass) == 3 ) { %>
+                            <a class="btn_thinorange" style="position:absolute;top:35px; right:15%;" href="javascript:OnClickChangeMoney('<%=user.strNickname%>', '<%=user.strGroupID%>', '<%=user.iClass%>');"><%=__('CashRecord')%></a>
+                        <% } %>
+                        <select id="LanguageSelect" class="form-select form-select-sm" aria-label=".form-select-sm example" style="width:100px; height:27px; position:absolute;top:35px; right:8%;background-color:black; color:white;">
+                            <option selected>Language</option>
+                            <option value="1"><a href="/ko">한국어</a></option>
+                            <option value="2"><a href="/jp">日本語</a></option>
+                            <option value="3"><a href="/en">English</a></option>
+                        </select>
+                        <% if ( parseInt(user.iClass) == 0 ) { %>
+                            <a class="init btn_thinred" style="position:absolute;top:35px; right:5%;" href="#">초기화</a>
+                        <% } %>
+                        <a class='logout btn_thinred' style="position:absolute;top:35px; right:1%;" href="/account/logout"><%=__('Logout')%></a>
+
+                    </div>
+
+                    <% if ( iHeaderFocus == 0 ) { %>
+                        <li class="on">
+                    <% } else { %>
+                        <li>
+                    <% } %>
+                        <a href="#" id="manage_partner">API 관리</a>
+                    </li>
+
+                    <li>
+                        <% let caption = '' %>
+                        <% if ( user.iClass == 2 ) { %>
+                            <a style="margin-top:-5px;margin-bottom:-5px; font-weight:regular;color:yellow;font-size:20px;font-family:'Spoqa Han Sans Neo', 'sans-serif';">[<%=__('ViceHQ')%>] <%=user.strNickname%></a>
+                        <% } else if ( user.iClass == 3 ) { %>
+                            <a style="margin-top:-10px;margin-bottom:-1 0px; font-weight:regular;color:yellow;font-size:25px;font-family:'Spoqa Han Sans Neo', 'sans-serif';">[<%=__('Admin')%>] <%=user.strNickname%></a>
+                        <% } else if ( user.iClass == 4 ) { %>
+                            <a style="margin-top:-10px;margin-bottom:-1 0px; font-weight:regular;color:yellow;font-size:25px;font-family:'Spoqa Han Sans Neo', 'sans-serif';">[<%=__('ProAdmin')%>] <%=user.strNickname%></a>
+                        <% } else if ( user.iClass == 5 ) { %>
+                            <a style="margin-top:-10px;margin-bottom:-1 0px; font-weight:regular;color:yellow;font-size:25px;font-family:'Spoqa Han Sans Neo', 'sans-serif';">[<%=__('ViceAdmin')%>] <%=user.strNickname%></a>
+                        <% } else if ( user.iClass == 6 ) { %>
+                            <a style="margin-top:-10px;margin-bottom:-1 0px; font-weight:regular;color:yellow;font-size:25px;font-family:'Spoqa Han Sans Neo', 'sans-serif';">[<%=__('Agent')%>] <%=user.strNickname%></a>
+                        <% } else if ( user.iClass == 7 ) { %>
+                            <a style="margin-top:-10px;margin-bottom:-1 0px; font-weight:regular;color:yellow;font-size:25px;font-family:'Spoqa Han Sans Neo', 'sans-serif';">[<%=__('Shop')%>] <%=user.strNickname%></a>
+                        <% } else { %>
+                            <a style="margin-top:-10px;margin-bottom:-1 0px; font-weight:regular;color:yellow;font-size:25px;font-family:'Spoqa Han Sans Neo', 'sans-serif';"><%=user.strNickname%></a>
+                        <% } %>
+                    </li>
+
+                </ul>
+            </nav>
+        </header>
+
+    <%- body %>
+    <script>
+
+        $(document).on('change', '#LanguageSelect', (e)=> {
+			const value = $('#LanguageSelect').val();
+			console.log(value);
+
+			if ( value == 1 )
+			{
+				location.href = '/ko';
+			}
+			else if ( value == 2 )
+			{
+				location.href = '/jp';
+			}
+			else if ( value == 3 )
+			{
+				location.href = '/en';
+			}
+        })
+
+
+        $(document).on('click', '.init', (event) => {
+           var dialog = window.confirm('초기화 하시겠습니까?(유저 정보를 제외한 모든 데이터가 초기화됩니다)');
+           if (dialog) {
+               $.ajax({
+                   url:"/init",
+                   type:"POST",
+                   dataType: "json",
+                   success: function (obj) {
+
+                       alert(obj.string);
+
+                       location.reload();
+
+                   }
+               });
+           }
+        })
+
+        
+        $(document).on('click', '.logout', (event) => {
+            location.redirect('/account/logout');
+        });
+
+        
+
+    </script>
+    <%- script %>
+
+</div>
+
+</body>
+</html>
+<% } %>
+

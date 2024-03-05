@@ -1,0 +1,242 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="format-detection" content="telephone=no">
+<meta name="Keywords" content="">
+<meta name="Description" content="">
+<title><%=__('User')%><%=__('Information')%></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="js/placeholders.js"></script>
+<script type="text/javascript" src="js/layout.js"></script>
+<script type="text/javascript" src="js/common_js.js"></script>
+<link rel="stylesheet" type="text/css" href="css/general.css"/>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+<link href="https: //fonts.googleapis.com/css2? family= Noto+Sans+KR & display=swap" rel="stylesheet">
+
+<script>
+    const strSubMenuRealtime = '<%=__("SubMenuRealtime")%>';
+    const strSubMenuBettingResult = '<%=__("SubMenuBettingResult")%>';
+    const strSubMenuViceHQList = '<%=__("SubMenuViceHQList")%>';
+    const strSubMenuAdminList = '<%=__("SubMenuAdminList")%>';
+    const strSubMenuProAdminList = '<%=__("SubMenuProAdminList")%>';
+    const strSubMenuViceAdminList = '<%=__("SubMenuViceAdminList")%>';
+    const strSubMenuAgentList = '<%=__("SubMenuAgentList")%>';
+    const strSubMenuShopList = '<%=__("SubMenuShopList")%>';
+    const strSubMenuBalanceRealtime = '<%=__("SubMenuBalanceRealtime")%>';
+    const strSubMenuBalanceResult = '<%=__("SubMenuBalanceResult")%>';
+    const strSubMenuPartnerLetter = '<%=__("SubMenuPartnerLetter")%>';
+    const strSubMenuLetter = '<%=__("SubMenuLetter")%>';
+    const strSubMenuSettingOdds = '<%=__("SubMenuSettingOdds")%>';
+    
+    const strUserList = '<%=__("UserList")%>';
+    const strLetterSend = '<%=__("LetterSend")%>';
+    const strLetterSendList = '<%=__("LetterSendList")%>';
+    const strLetter = '<%=__("Letter")%>';
+    
+    const strInputRequestList = '<%=__("InputRequestList")%>';
+    const strOutputRequestList = '<%=__("OutputRequestList")%>';
+    const strCashRecord = '<%=__("CashRecord")%>';
+    const strShowTotal = '<%=__("ShowTotal")%>';
+    const strRequestInput = '<%=__("RequestInput")%>';
+    const strRequestOutput = '<%=__("RequestOutput")%>';
+    const strSearch = '<%=__("Search")%>';
+    const strNickname = '<%=__("Nickname")%>';
+    const strDate = '<%=__("Date")%>';
+    const strInput = '<%=__("Input")%>';
+    const strOutput = '<%=__("Output")%>';
+    const strTotal = '<%=__("Total")%>';
+    const strIndex = '<%=__("Index")%>';
+    const strToken = '<%=__("Token")%>';
+    const strApplicantName = '<%=__("ApplicantName")%>';
+    const strInputHolderName = '<%=__("InputHolderName")%>';
+    const strOutputHolderName = '<%=__("OutputHolderName")%>';
+    const strBankName = '<%=__("BankName")%>';
+    const strBankAccount = '<%=__("BankAccount")%>';
+    const strBankAccountHolderName = '<%=__("BankAccountHolderName")%>';
+    const strInputAmount = '<%=__("InputAmount")%>';
+
+    const strOutputAmount = '<%=__("OutputAmount")%>';
+    const strStateStandby = '<%=__("StateStandby")%>';
+    const strStateProcess = '<%=__("StateProcess")%>';
+    const strMyCash = '<%=__("MyCash")%>';
+    const strDateRequest = '<%=__("DateRequest")%>';
+    const strDateProcess = '<%=__("DateProcess")%>';
+    const strCancel = '<%=__("Cancel")%>';
+    const strMemo = '<%=__("Memo")%>';
+    const strSave = '<%=__("Save")%>';
+    const strCash = '<%=__("Cash")%>';
+    const strRolling = '<%=__("Rolling")%>';
+    const strSettle = '<%=__("Settle")%>';
+    const strBaccarat = '<%=__("Baccarat")%>';
+    const strEvolution = '<%=__("Evolution")%>';
+    const strBlackjack = '<%=__("Blackjack")%>';
+    const strRoulette = '<%=__("Roulette")%>';
+    const strSlot = '<%=__("Slot")%>';
+    const strTie = '<%=__("Tie")%>';
+    const strPlayer = '<%=__("Player")%>';
+    const strBanker = '<%=__("Banker")%>';
+    const strPlayerUnder = '<%=__("PlayerUnder")%>';
+
+    const strPlayerOver = '<%=__("PlayerOver")%>';
+    const strBankerUnder = '<%=__("BankerUnder")%>';
+    const strBankerOver = '<%=__("BankerOver")%>';
+    const strPlayerPair = '<%=__("PlayerPair")%>';
+    const strBankerPair = '<%=__("BankerPair")%>';
+    const strEitherPair = '<%=__("EitherPair")%>';
+    const strPerfectPair = '<%=__("PerfectPair")%>';
+    const strPowerBall = '<%=__("PowerBall")%>';
+    const strDragonTiger = '<%=__("DragonTiger")%>';
+    const strFull = '<%=__("Full")%>';
+    const strSearchResult = '<%=__("SearchResult")%>';
+    const strLevel = '<%=__("Level")%>';
+    const strID = '<%=__("ID")%>';
+    const strTemporaryModify = '<%=__("TemporaryModify")%>';
+    const strLoan = '<%=__("Loan")%>';
+    const strMenu = '<%=__("Menu")%>';
+    const strState = '<%=__("State")%>';
+    const strHQ = '<%=__("HQ")%>';
+    const strViceHQ = '<%=__("ViceHQ")%>';
+    const strAdmin = '<%=__("Admin")%>';
+    const strProAdmin = '<%=__("ProAdmin")%>';
+
+    const strViceAdmin = '<%=__("ViceAdmin")%>';
+    const strAgent = '<%=__("Agent")%>';
+    const strShop = '<%=__("Shop")%>';
+    const strUser = '<%=__("User")%>';
+    const strCashInputAmount = '<%=__("CashInputAmount")%>';
+    const strCashOutputAmount = '<%=__("CashOutputAmount")%>';
+    const strBetting = '<%=__("Betting")%>';
+    const strWin = '<%=__("Win")%>';
+    const strNormal = '<%=__("Normal")%>';
+    const strNotice = '<%=__("Notice")%>';
+    const strBlock = '<%=__("Block")%>';
+    const strMove = '<%=__("Move")%>';
+    const strCalculation = '<%=__("Calculation")%>';
+    const strUnlimit = '<%=__("Unlimit")%>';
+    const strCommission = '<%=__("Commission")%>';
+    const strWinLose = '<%=__("WinLose")%>';
+    const strUnchanged = '<%=__("Unchanged")%>';
+    const strRound = '<%=__("Round")%>';
+    const strType = '<%=__("Type")%>';
+
+    const strMoney = '<%=__("Money")%>';
+    const strPay = '<%=__("Pay")%>';
+    const strContact = '<%=__("Contact")%>';
+    const strToday = '<%=__("Today")%>';
+    const strHalf1 = '<%=__("Half1")%>';
+    const strHalf2 = '<%=__("Half2")%>';
+    const strOpen = '<%=__("Open")%>';
+    const strBalance = '<%=__("Balance")%>';
+    const strApply = '<%=__("Apply")%>';
+    const strCount = '<%=__("Count")%>';
+    const strNumber = '<%=__("Number")%>';
+    const strLimit = '<%=__("Limit")%>';
+    const strModify = '<%=__("Modify")%>';
+    const strAmount = '<%=__("Amount")%>';
+    const strShortCut = '<%=__("ShortCut")%>';
+    const strRegister = '<%=__("Register")%>';
+    const strUnderOver = '<%=__("UnderOver")%>';
+    const strExchange = '<%=__("Exchange")%>';
+    const strRoom = '<%=__("Room")%>';
+    const strAll = '<%=__("All")%>';
+    const strRead = '<%=__("Read")%>';
+    const strUnread = '<%=__("Unread")%>';
+    const strConfirm = '<%=__("Confirm")%>';
+    const strSender = '<%=__("Sender")%>';
+    const strContents = '<%=__("Contents")%>';
+    const strDateSend = '<%=__("DateSend")%>';
+    const strDateRead = '<%=__("DateRead")%>';
+    const strStateLetter = '<%=__("StateLetter")%>';
+    const strSend = '<%=__("Send")%>';
+    const strLetterListReceived = '<%=__("LetterListReceived")%>';
+
+    const strLetterListSended = '<%=__("LetterListSended")%>';
+    const strReceiver = '<%=__("Receiver")%>';
+    const strInformation = '<%=__("Information")%>';
+    const strRecordPointExchange = '<%=__("RecordPointExchange")%>';
+    const strRecordGame = '<%=__("RecordGame")%>';
+    const strRecordBetting = '<%=__("RecordBetting")%>';
+    const strResult = '<%=__("Result")%>';
+    const strOdds = '<%=__("Odds")%>';
+    const strResultType = '<%=__("ResultType")%>';
+    const strOriginalCash = '<%=__("OriginalCash")%>';
+    const strTime = '<%=__("Time")%>';
+    const strResultCash = '<%=__("ResultCash")%>';
+    const strDesc = '<%=__("Desc")%>';
+    const strDateRegister = '<%=__("DateRegister")%>';
+    const strRecordInout = '<%=__("RecordInout")%>';
+    const strRecordInput = '<%=__("RecordInput")%>';
+    const strRecordOutput = '<%=__("RecordOutput")%>';
+    const strCashBeforeInput = '<%=__("CashBeforeInput")%>';
+    const strCashAfterInput = '<%=__("CashAfterInput")%>';
+    const strCashBeforeOutput = '<%=__("CashBeforeOutput")%>';
+    const strCashAfterOutput = '<%=__("CashAfterOutput")%>';
+    const strPartner = '<%=__("Partner")%>';
+    const strGive = '<%=__("Give")%>';
+    const strTake = '<%=__("Take")%>';
+    const strClassification = '<%=__("Classification")%>';
+    const strCurrency = '<%=__("Currency")%>';
+    const strOK = '<%=__("OK")%>';
+    const strRecordSend = '<%=__("RecordSend")%>';
+    const strRecordReceive = '<%=__("RecordReceive")%>';
+    const strTarget = '<%=__("Target")%>';
+
+    const strAlertNone = '<%=__("AlertNone")%>';
+    const strLetterDesc = '<%=__("LetterDesc")%>';
+    const strMyCoin = '<%=__("MyCoin")%>';
+    const strRecord = '<%=__("Record")%>';
+    const strSelect = '<%=__("Select")%>';
+    const strDuplication = '<%=__("Duplication")%>';
+    const strPassword = '<%=__("Password")%>';
+    const strPasswordConfirm = '<%=__("PasswordConfirm")%>';
+    const strBoardWrite = '<%=__("BoardWrite")%>';
+    const strBelong = '<%=__("Belong")%>';
+    const strClose = '<%=__("Close")%>';
+    const strYear = '<%=__("Year")%>';
+    const strBefore = '<%=__("Before")%>';
+    const strAfter = '<%=__("After")%>';
+    const strRemove = '<%=__("Remove")%>';
+    const strWrite = '<%=__("Write")%>';
+
+    const strRealtimeOnlineUserList = '<%=__("RealtimeOnlineUserList")%>';
+
+    const strExchangeMoney = '<%=__("ExchangeMoney")%>';
+    const strExchangeRolling = '<%=__("ExchangeRolling")%>';
+    const strExchangeSettle = '<%=__("ExchangeSettle")%>';
+    const strBettingRecord = '<%=__("BettingRecord")%>';
+    const strAnnouncement = '<%=__("Announcement")%>';
+    const strPopup = '<%=__("Popup")%>';
+    const strNoRecord = '<%=__("NoRecord")%>';
+
+    const strConfirmCancel = '<%=__("ConfirmCancel")%>';
+    const strConfirmChangeState = '<%=__("ConfirmChangeState")%>';
+    const strConfirmRemove = '<%=__("ConfirmRemove")%>';
+    const strConfirmRequest = '<%=__("ConfirmRequest")%>';
+    const strConfirmExchange = '<%=__("ConfirmExchange")%>';
+    const strConfirmGive = '<%=__("ConfirmGive")%>';
+    const strConfirmTake = '<%=__("ConfirmTake")%>';
+
+    const strAlertComplete = '<%=__("AlertComplete")%>';
+    const strAlertError = '<%=__("AlertError")%>';
+    const strAlertErrorNotEnoughMoney = '<%=__("AlertErrorNotEnoughMoney")%>';
+    const strAlertErrorAlreadyComplete = '<%=__("AlertErrorAlreadyComplete")%>';
+    const strAlertEnableToUse = '<%=__("AlertEnableToUse")%>';
+    const strAlertDisableToUse = '<%=__("AlertDisableToUse")%>';
+    const strAlertNeedToDuplicationCheckID = '<%=__("AlertNeedToDuplicationCheckID")%>';
+    const strAlertNeedToDuplicationCheckNickname = '<%=__("AlertNeedToDuplicationCheckNickname")%>';
+    const strAlertDifferentPasswordAndConfirm = '<%=__("AlertDifferentPasswordAndConfirm")%>';
+    const strAlertIncorrectInputMoney = '<%=__("AlertIncorrectInputMoney")%>';
+    const strAlertIncorrectInputValue = '<%=__("AlertIncorrectInputValue")%>';
+    const strAlertIncorrectPassword = '<%=__("AlertIncorrectPassword")%>';
+    const strAlertNoReceivers = '<%=__("AlertNoReceivers")%>';
+    const strAlertNoContents = '<%=__("AlertNoContents")%>';
+    const strAlertCantRemove = '<%=__("AlertCantRemove")%>';
+    const strAlertNoRecord = '<%=__("AlertNoRecord")%>';
+
+    const strStateComplete = '<%=__("StateComplete")%>';
+
+</script>
+
+

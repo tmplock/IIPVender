@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <!-- 아래의 meta tag 4가지 항목을 반드시 추가 하시기 바랍니다. -->
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true" >
+
+    <title>관리자</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="js/placeholders.js"></script>
+    <script type="text/javascript" src="js/layout.js"></script>
+    <script type="text/javascript" src="js/wSelect.js" defer></script>
+    <script type="text/javascript" src="js/common_js.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/general.css"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+    <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+</head>
+
+<body>
+    <div id="wrap" class="skin_type01">
+        <div class="login_bg"></div>
+        <div class="login_box">
+            <div class="logo">
+                <!-- <h1><img src="img/common/img_intro02.png" alt=""></h1> -->
+                <h2>IIP CMS</h2>
+            </div>
+            <div class="login">
+                <!-- <p class="txt">관리자 페이지 입니다. <br>아이디와 패스워드를 입력해주세요</p> -->
+                <p class="txt"><%=__('ManagerLoginDesc1')%><br><%=__('ManagerLoginDesc2')%></p>
+                <form name="frm" method="post" action="/account/login">
+                    <input type="hidden" name="reurl_go" value="">
+                    <fieldset>
+                        <legend><%=__('ID')%>, <%=__('Password')%></legend>
+                        <div class="input_id">
+                            <span><input type="text" title="id" placeholder="아이디" name="strNickname" id="lms_id" tabindex = "1" required="yes" message="아이디"></span>
+                        </div>
+                        <div class="input_pw mt10">
+                            <span><input type="password" title="password" placeholder="비밀번호" name="strPassword" id="lms_pass" tabindex = "2"  required="yes" message="비밀번호" onKeypress="if(event.keyCode ==13){go_submit();return;}"></span>
+                        </div>
+                        <br>
+                        <% if ( messages ) { %>
+                            <p style="color:red;"><%= messages %></p>
+                            <% } %>
+                        <br>
+
+                        <button class="btn_login" onclick="go_submit();"><span>LOGIN</span></button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <script type="text/javascript">
+        function init_Onload(){
+            document.frm.lms_id.focus();
+        }
+        
+        function go_submit() {
+            var check = chkFrm('frm');
+            if(check) {
+                frm.submit();
+            } else {
+                return;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<div class="sub_wrap">
+	<div class="container clearfix">
+		<div class="content" style="position:relative; padding:0 10px 0 10px;">
+
+			<ul class="list_tab" style="float:right; margin-right:10px; position:relative; z-index:10;">
+				<a href="javascript:OnClickRegister();" id="register_agent" iAgentClass="3" class="btn_gray">API 등록</a>
+			</ul>
+
+
+			<ul class="list_tab" style="margin-bottom:10px;width:75%;z-index:10000;" id="partner_header">
+                <li class='on'>
+                    <a href="#" id="partner_listrealtimeuser">API 목록</a>
+                </li>
+                <li>
+                    <a href="/partner/listvender" id="partner_listrealtimeuser">게임사 목록</a>
+                </li>
+			</ul>
+		</div>
+		
+		<div class="list">
+
+			<div class="search_wrap" id="div_realtimebet_overview">
+			</div>
+
+			<div style="background-color:#ffffff;text-align:right;padding-right:5px;padding-top:0px;padding-bottom:0px;" colspan="19">
+
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:100px;height:25px;text-align:center;background-color: rgb(197, 105, 43);color:white" onclick="OnClickGT();">지급 차감</button>
+
+				<input style="width:100px;" type="text" id="datepicker1" class="datepicker"/>~
+				<input style="width:100px;" type="text" id="datepicker2" class="datepicker" />
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="RequestList();"><%=__('Search')%></button>
+				<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%=__('Search')%>
+				<select id="select_roomno" style="width:80px;">
+					<option><%=__('Nickname')%></option>
+				</select>
+				<input style="margin-left:0px;width:100px;" id="strSearchNickname" type="text"/>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="OnClickSearchNickname();"><%=__('Search')%></button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<button class="btn_blue search_btn" search_btn-index="0" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(39, 169, 209);color:white" onclick="OnClickTodayRecord();"><%=__('Today')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="1"style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(53, 209, 39);color:white" onclick="OnClickMonthly1stRecord();"><%=__('Half1')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="2"style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(53, 209, 39);color:white" onclick="OnClickMonthly2ndRecord();"><%=__('Half2')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="3"id="button_toggle_record" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(136, 136, 248);color:white" onclick="OnClickMonthlyRecord();"><%=__('Open')%></button> -->
+			
+			</div>
+
+			<div class="search_wrap" id="div_realtimebet_overview_record">
+			</div>
+		
+			<!-- <br> -->
+
+			<div class="list_tit">
+				<h3>API 목록
+				</h3>
+			</div>
+
+	
+			<div class="search_wrap" id="div_realtimebet">
+	
+				<!-- <table class="search_list" style='font-family:"Consalas", Consalas, monospace; font-size:95%'> -->
+				<table class="search_list">
+					<caption><%=__('SearchResult')%></caption>
+					<colgroup>
+						<col style="width:7%;">
+						<col style="width:7%;">
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:10%;">
+						<col style="width:10%;">
+						<col style="width:10%;">
+						<col style="width:10%;">
+						<col style="width:10%;">
+						<col style="width:10%;">
+						<col style="width:10%;">
+						<col style="width:16%;">
+						<col style="width:5%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">에이전트 코드</th>
+							<th scope="col">시크릿 코드</th>
+							<th scope="col">아이디</th>
+							<th scope="col">닉네임</th>
+							<th scope="col">지급금액</th>
+							<th scope="col">차감금액</th>
+							<th scope="col">보유 포인트</th>							
+							<th scope="col">베팅금액</th>
+							<th scope="col">당첨금액</th>
+							<th scope="col">취소금액</th>
+							<th scope="col">합계</th>
+							<th scope="col">콜백 URL</th>
+							<th scope="col">포인트 요율</th>
+						</tr>
+					</thead>
+					<tbody id="list">
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.clicked_menu{
+		color: red;
+	}
+</style>
+<script>
+	$('.search_btn').each(function(index){
+	$(this).attr('search_btn-index', index);
+}).click(function(){
+    /*클릭된 <div>의 menu-index 값을 index 변수에 할당한다.*/
+    var index = $(this).attr('search_btn-index');
+    /*클릭한 <div>에  clicked_menu 클래스 추가*/
+	$('.search_btn[search_btn-index=' + index + ']').addClass('clicked_menu'); 
+    /*그 외 <div>는  clicked_menu 클래스 삭제*/
+	$('.search_btn[search_btn-index!=' + index + ']').removeClass('clicked_menu');
+});
+
+</script>
+
+<script>
+
+    DatePicker();
+	$('#datepicker1').val(GetCurrentDate());
+	$('#datepicker2').val(GetCurrentDate());
+
+	let OnClickPartner = (strID) => {
+
+		window.open('', 'PopupPartner', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+		var $form = $('<form></form>');
+		$form.attr('action', '/partner_popup/profile');
+		$form.attr('method', 'get');
+		$form.attr('target', 'PopupPartner');
+		$form.appendTo('body');
+
+		var idx = $(`<input type="hidden" value="${strID}" name="strID">`);
+
+		$form.append(idx);
+		$form.submit();
+	}
+
+	let OnClickRegister = () => {
+
+		window.open('', 'RegisterPartner', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+		var $form = $('<form></form>');
+		$form.attr('action', '/partner_popup/register');
+		$form.attr('method', 'get');
+		$form.attr('target', 'RegisterPartner');
+		$form.appendTo('body');
+
+		// $form.append(idx);
+		$form.submit();
+	}
+
+	let OnClickGT = () => {
+		window.open('', 'PopupInout', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+		var $form = $('<form></form>');
+		$form.attr('action', '/inout_popup/inout');
+		$form.attr('method', 'get');
+		$form.attr('target', 'PopupInout');
+		$form.appendTo('body');
+
+		// $form.append(idx);
+		$form.submit();
+	}
+
+// 	function OnClickUser(strNickname, strGroupID, iClass, iPermission)
+// {
+//     window.open('', 'popupUser', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+
+//     var $form = $('<form></form>');
+//     $form.attr('action', '/manage_user_popup/bettingrecord');
+//     $form.attr('method', 'post');
+//     $form.attr('target', 'popupUser');
+//     $form.appendTo('body');
+
+//     var idx = $(`<input type="hidden" value="${strNickname}" name="strNickname">`);
+//     var page = $(`<input type="hidden" value="${strGroupID}" name="strGroupID">`);
+//     var category = $(`<input type="hidden" value=${parseInt(iClass)} name="iClass">`);
+//     var iPermission = $(`<input type="hidden" value=${parseInt(iPermission)} name="iPermission">`);
+
+//     $form.append(idx).append(page).append(category).append(iPermission);
+//     $form.submit();
+// }
+
+	let RequestList = () => {
+
+		const dateStart = $('#datepicker1').val();
+		const dateEnd = $('#datepicker2').val();
+
+		$.ajax({
+			type:'post',
+			url: "/partner/request_list",
+			context: document.body,
+			data:{dateStart:dateStart, dateEnd:dateEnd},
+	
+			success:function(data) {
+
+				console.log(data);
+
+				$('#list').empty();
+
+				for ( let i in data.list )
+				{
+					const t = data.list[i];
+
+					const total = parseInt(t.iBetting) - parseInt(t.iWin) - parseInt(t.iCancel);
+
+					let tag = `
+					<tr>
+						<td>${t.strAgentCode}</td>
+						<td>${t.strSecretCode}</td>
+						<td><a href='javascript:OnClickPartner("${t.strID}");' style='color:blue;'>${t.strID}</a></td>
+						<td>${t.strNickname}</td>
+						<td>${parseInt(t.iGives).toLocaleString()}</td>
+						<td>${parseInt(t.iTakes).toLocaleString()}</td>
+						<td>${parseInt(t.iCash).toLocaleString()}</td>
+						<td>${parseInt(t.iBetting).toLocaleString()}</td>
+						<td>${parseInt(t.iWin).toLocaleString()}</td>
+						<td>${parseInt(t.iCancel).toLocaleString()}</td>
+						<td>${total.toLocaleString()}</td>
+						<td>${t.strCallbackURL}</td>
+						<td>${t.fOdds}</td>
+						
+					</tr>					
+					`;
+					$('#list').append(tag);
+				}
+				
+			}
+		});
+	}
+
+	RequestList();
+
+</script>

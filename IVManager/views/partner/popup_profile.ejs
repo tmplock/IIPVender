@@ -1,0 +1,193 @@
+<div style="height:5px;">
+</div>
+<div class="write">
+	<p style="background-image:url(../images/common/play.png); background-repeat:no-repeat; background-position:left center; font-size:16px; color:#454545; padding-left:22px;">파트너 정보</p>
+		<table>
+			<caption><%=__('Partner')%> <%=__('Modify')%></caption>
+			<colgroup>
+				<col style="width:15%">
+				<col style="width:35%">
+				<col style="width:15%">
+				<col style="width:35%">
+			</colgroup>
+			<tr>
+				
+				<th scope="row" style="background-color:lightsteelblue">아이디</th>
+				<td style="background-color:lightsteelblue">
+					
+					<input type="text" style="width:50%;" name="strID" id="strID" required="no"  message="" value="<%=user.strID%>">&nbsp;
+					<!-- <a href="#" onclick="CheckNickname();" class="btn_red"><%=__('Duplication')%><%=__('OK')%></a> -->
+					
+				</td>
+				
+				<th style="background-color:lightsteelblue" scope="row">요율</th>
+				<td style="background-color:lightsteelblue">
+					<input type="text" style="width:50%;" name="fOdds" id="fOdds" required="no" message="" value="<%=user.fOdds%>">
+				</td>
+			</tr>
+			<tr>
+				
+				<th scope="row" style="background-color:lightsteelblue">닉네임</th>
+				<td style="background-color:lightsteelblue">
+					
+					<input type="text" style="width:50%;" name="strNickname" id="strNickname" required="no"  message="" value="<%=user.strNickname%>">&nbsp;
+					<!-- <a href="#" onclick="CheckNickname();" class="btn_red"><%=__('Duplication')%><%=__('OK')%></a> -->
+					
+				</td>
+				
+				<th style="background-color:lightsteelblue" scope="row">보유 머니</th>
+				<td style="background-color:lightsteelblue">
+					<input type="text" style="width:50%;" name="iCash" id="iCash" required="no" message="" value="<%=user.iCash%>">
+				</td>
+			</tr>
+			<tr>
+				
+				<th scope="row" style="background-color:lightsteelblue">에이전트 코드</th>
+				<td style="background-color:lightsteelblue">
+					
+					<input type="text" style="width:50%;" name="strAgentCode" id="strAgentCode" required="no"  message="" value="<%=user.strAgentCode%>">&nbsp;
+					<!-- <a href="#" onclick="CheckNickname();" class="btn_red"><%=__('Duplication')%><%=__('OK')%></a> -->
+					
+				</td>
+				
+					<th scope="row"><%=__('BankName')%></th>
+				<td>
+					<input type="text" style="width:50%;" name="strBankName" id="strBankName" required="no" message="" value="<%=user.strBankName%>">
+				</td>
+			</tr>
+			<tr>
+				<th scope="row" style="background-color:lightsteelblue">시크릿 코드</th>
+				<td style="background-color:lightsteelblue">
+					<input type="text" style="width:50%;" name="strSecretCode" id="strSecretCode" value="<%=user.strSecretCode%>" required="yes"  message="아이디"/>&nbsp;
+						<!-- <a href="#" onclick="CheckID();" class="btn_red"><%=__('Duplication')%><%=__('OK')%></a> -->
+				</td>
+
+				<th scope="row"><%=__('BankAccount')%></th>
+				<td>
+					<input type="text" style="width:50%;" name="strBankAccount" id="strBankAccount" required="no" message="" value="<%=user.strBankAccount%>">
+				</td>
+			</tr>
+			<tr>
+
+				<th scope="row"><%=__('Password')%></th>
+				<td>
+					<input type="text" maxlength="16" name="strPassword" id="strPassword" required="no"  message="" style="width:50%; ime-mode:disabled" value="<%=user.strPassword%>"> <span style="display:inline-block; padding-top:4px;" > </span>
+				</td>
+
+				<th scope="row"><%=__('BankAccountHolderName')%></th>
+				<td>
+					<input type="text" style="width:50%;" name="strBankAccountHolder" id="strBankAccountHolder" required="no"  message="" value="<%=user.strBankAccountHolder%>">
+				</td>
+			</tr>
+		
+			<tr>
+				<th scope="row"><%=__('PasswordConfirm')%></th>
+				<td>
+					<input type="text" maxlength="16" name="strPasswordConfirm" id="strPasswordConfirm"required="no"  message="" style="width:50%; ime-mode:disabled" value="<%=user.strPassword%>"> <span style="display:inline-block; padding-top:4px;" > </span>
+				</td>
+
+				<th scope="row"><%=__('Contact')%></th>
+				<td>
+					<input type="text" style="width:50%;" name="cell" id="strMobile" required="no"  message="" value="<%=user.strMobile%>">
+				</td>
+			</tr>
+
+		</table>
+
+		<table>
+			<caption><%=__('Partner')%> <%=__('Modify')%></caption>
+			<p style="background-image:url(../images/common/play.png); background-repeat:no-repeat; background-position:left center; font-size:16px; color:#454545; padding-left:22px;">URL</p>
+			<colgroup>
+				<col style="width:15%">
+				<col style="width:85%">
+			</colgroup>
+			<tr>
+				<th scope="row">콜백 URL</th>
+				<td>
+					<input type="text" maxlength="16" name="strCallbackURL" id="strCallbackURL"required="no"  message="" style="width:90%; ime-mode:disabled" value="<%=user.strCallbackURL%>"> <span style="display:inline-block; padding-top:4px;" > </span>
+				</td>
+			</tr>
+
+		</table>
+		<!-- <table>
+			<colgroup>
+				<col width="15%" />
+				<col width="35%" />
+			</colgroup>
+			<p
+					style="background-image:url(../images/common/play.png); background-repeat:no-repeat; background-position:left center; font-size:16px; color:#454545; padding-left:22px;">
+				권한 설정</p>
+
+			<tr>
+				<th scope="row">
+					권한 부여
+				</th>
+				<td>
+						<input type="checkbox" style="width:30px;height:30px;" name="using_input_permission"
+							   id="using_input_permission" required="no" message="" checked>
+						<strong>
+							체크시 권한 부여
+						</strong>
+				</td>
+
+				<td>
+
+				</td>
+
+			</tr>
+
+		</table> -->
+		<div class="write_btn align_r">
+			<!-- <button class="btn_red" onclick="go_submit();"><%=__('Confirm')%></button> -->
+			<button class="btn_red" onclick="OnClickModify();"><%=__('Confirm')%></button>
+		</div>
+	
+</div>
+
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script>
+
+	const user = JSON.parse('<%-JSON.stringify(user)%>');
+
+	$(document).on('click', '#popup_inout', () => {
+
+		location.href = `/partner_popup/inout?strID=${user.strID}`;
+
+	});
+
+	let OnClickModify = () => {
+
+		const objectData = {
+			strID:$('#strID').val(),
+			strNickname:$('#strNickname').val(),
+			fOdds:$('#fOdds').val(),
+			strAgentCode:$('#strAgentCode').val(),
+			strSecretCode:$('#strSecretCode').val(),
+			strPassword:$('#strPassword').val(),
+			strPasswordConfirm:$('#strPasswordConfirm').val(),
+			strBankName:$('#strBankName').val(),
+			strBankAccount:$('#strBankAccount').val(),
+			strBankAccountHolder:$('#strBankAccountHolder').val(),
+			strMobile:$('#strMobile').val(),
+			strCallbackURL:$('#strCallbackURL').val(),
+			strBankName:$('#strBankName').val(),
+			strBankAccount:$('#strBankAccount').val(),
+			strBankAccountHolder:$('strBankAccountHolder').val(),
+			strMobile:$('#strMobile').val(),
+		};
+
+		$.ajax({
+			type:'post',
+			url: "/partner_popup/request_profilemodify",
+			context: document.body,
+			data:objectData,
+	
+			success:function(data) {
+
+				console.log(data);
+
+			}
+		});
+	}
+</script>
+	

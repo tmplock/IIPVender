@@ -1,0 +1,152 @@
+<div style="height:5px;">
+</div>
+<div class="write">
+	<div style="background-color:#ffffff;text-align:right;padding-right:5px;padding-top:0px;padding-bottom:0px;" colspan="19">
+		<input style="width:100px;" type="text" id="datepicker1" class="datepicker"/>~
+		<input style="width:100px;" type="text" id="datepicker2" class="datepicker" />
+		<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="RequestList();"><%=__('Search')%></button>
+	</div>
+	<br/>
+
+
+	<div class="search_wrap">
+		<table>
+			<tr>
+				<td style="width:49.5%" valign="top">
+					<p style="background-image:url(../images/common/play.png); background-repeat:no-repeat; background-position:left center; font-size:15px; color:#454545; padding-left:22px;color:blue;">지급 내역</p>
+					
+					<div id="adjust_list_cash">
+						<!-- 캐시 히스토리 영역 -->
+						<table class="search_list">
+							<thead>
+								<tr>
+									<th width="8%" style="font-size:15px;"><%=__('Index')%></th>
+									<th width="40%" style="font-size:15px;">금액</th>
+									<th width="15%" style="font-size:15px;">대상</th>
+									<th width="37%" style="font-size:15px;"><%=__('Date')%></th>
+								</tr>
+							</thead>
+							<tbody id="listGives">
+								<tr>
+									<td colspan="20" height="40"><strong><%=__('NoRecord')%></strong></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="pagination mt0">
+							<a href="#" class="on" style="color:#ffffff;">1</a>
+						</div>
+
+					</div>
+				</td>
+
+				<td style="width:1%;background-color:#d8c8b2;"></td>
+
+				<td style="width:49.5%" valign="top">
+					<p style="background-image:url(../images/common/play.png); background-repeat:no-repeat; background-position:left center; font-size:15px; color:#454545; padding-left:22px;color:red;">차감 내역</p>
+				
+					<div id="adjust_list_point">
+						<table class="search_list">
+							<thead>
+								<tr>
+									<th width="8%" style="font-size:15px;"><%=__('Index')%></th>
+									<th width="40%" style="font-size:15px;">금액</th>
+									<th width="15%" style="font-size:15px;">대상</th>
+									<th width="37%" style="font-size:15px;"><%=__('Date')%></th>
+								</tr>
+							</thead>
+							<tbody id="listTakes">
+								<tr>
+									<td colspan="20" height="40"><strong><%=__('NoRecord')%></strong></td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="pagination mt0">
+							<a href="#" class="on" style="color:#ffffff;">1</a>
+						</div>
+
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<!-- <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> -->
+<script type="text/javascript" src="js/time.js"></script>
+<script>
+
+	const user = JSON.parse('<%-JSON.stringify(user)%>');
+
+	$(document).on('click', '#popup_profile', () => {
+
+		location.href = `/partner_popup/profile?strID=${user.strID}`;
+
+	});
+
+	DatePicker();
+	$('#datepicker1').val(GetCurrentDate());
+	$('#datepicker2').val(GetCurrentDate());
+
+	
+	let RequestList = () => {
+
+		const dateStart = $('#datepicker1').val();
+		const dateEnd = $('#datepicker2').val();
+
+		let objectData = {
+			strResponseNickname:user.strNickname,
+			dateStart:dateStart,
+			dateEnd:dateEnd,
+		}
+
+		$.ajax({
+			type:'post',
+			url: "/inout_popup/request_listforresponser",
+			context: document.body,
+			data:objectData,
+	
+			success:function(data) {
+
+				console.log(data);
+				if ( data.result == 'OK' )
+				{
+					$('#listGives').empty();
+					for ( let i in data.listGives )
+					{
+						const tag = `
+						<tr>
+							<td>${parseInt(i)+1}</td>
+							<td>${data.listGives[i].iAmount.toLocaleString()}</td>
+							<td>${data.listGives[i].strRequestNickname}</td>
+							<td>${data.listGives[i].createdAt}</td>
+						</tr>
+						`;
+						$('#listGives').append(tag);
+					}
+
+					$('#listTakes').empty();
+					for ( let i in data.listTakes )
+					{
+						const tag = `
+						<tr>
+							<td>${parseInt(i)+1}</td>
+							<td>${data.listTakes[i].iAmount.toLocaleString()}</td>
+							<td>${data.listTakes[i].strRequestNickname}</td>
+							<td>${data.listTakes[i].createdAt}</td>
+						</tr>
+						`;
+						$('#listTakes').append(tag);
+					}
+				}
+				else
+				{
+				}
+
+			}
+		});
+	}
+
+	RequestList();
+	
+</script>
+	

@@ -1,0 +1,73 @@
+.skin_type01 .login_bg{ background-color:#4783b0;}
+.skin_type02 .login_bg{ background-color:#ff9;}
+.skin_type03 .login_bg{ background-color:#f9f;}
+.skin_type04 .login_bg{ background-color:#9ff;}
+.skin_type05 .login_bg{ background-color:#999;}
+
+.skin_type01 #header .header_top .inner .user_name span.ico{background-color:#459ada;}
+.skin_type02 #header .header_top .inner .user_name span.ico{background-color:#ff9;}
+.skin_type03 #header .header_top .inner .user_name span.ico{background-color:#f9f;}
+.skin_type04 #header .header_top .inner .user_name span.ico{background-color:#9ff;}
+.skin_type05 #header .header_top .inner .user_name span.ico{background-color:#999;}
+
+.skin_type01 #header #gnb{border-bottom:3px solid #459ada;}
+.skin_type02 #header #gnb{border-bottom:3px solid #ff9}
+.skin_type03 #header #gnb{border-bottom:3px solid #f9f}
+.skin_type04 #header #gnb{border-bottom:3px solid #9ff}
+.skin_type05 #header #gnb{border-bottom:3px solid #999}
+
+.skin_type01 #header #gnb ul li.on a{background-color:#459ada;}
+.skin_type02 #header #gnb ul li.on a{background-color:#ff9;}
+.skin_type03 #header #gnb ul li.on a{background-color:#f9f;}
+.skin_type04 #header #gnb ul li.on a{background-color:#9ff;}
+.skin_type05 #header #gnb ul li.on a{background-color:#999;}
+
+.skin_type01 #header #gnb ul li:hover a{background-color:#459ada;}
+.skin_type02 #header #gnb ul li:hover a{background-color:#ff9;}
+.skin_type03 #header #gnb ul li:hover a{background-color:#f9f;}
+.skin_type04 #header #gnb ul li:hover a{background-color:#9ff;}
+.skin_type05 #header #gnb ul li:hover a{background-color:#999;}
+
+.skin_type01 #lnb ul.menu > li > a.skin_bg{background-color:#459ada;}
+.skin_type02 #lnb ul.menu > li > a.skin_bg{background-color:#ff9;}
+.skin_type03 #lnb ul.menu > li > a.skin_bg{background-color:#f9f;}
+.skin_type04 #lnb ul.menu > li > a.skin_bg{background-color:#9ff;}
+.skin_type05 #lnb ul.menu > li > a.skin_bg{background-color:#999;}
+
+
+.skin_type01 .hero-circle {background-color: #4783b0;}
+.skin_type02 .hero-circle {background-color: #ff9;}
+.skin_type03 .hero-circle {background-color: #f9f;}
+.skin_type04 .hero-circle {background-color: #9ff;}
+.skin_type05 .hero-circle {background-color: #999;}
+
+.skin_type01 .dashboard .clock{background-color: #4783b0;}
+.skin_type02 .dashboard .clock{background-color: #ff9;}
+.skin_type03 .dashboard .clock{background-color: #f9f;}
+.skin_type04 .dashboard .clock{background-color: #9ff;}
+.skin_type05 .dashboard .clock{background-color: #999;}
+
+
+.skin_type01 .view > p.tit span{color:#4783b0;}
+.skin_type02 .view > p.tit span{color:#ff9;}
+.skin_type03 .view > p.tit span{color:#f9f;}
+.skin_type04 .view > p.tit span{color:#9ff;}
+.skin_type05 .view > p.tit span{color:#999;}
+
+.skin_type01 .write > p.tit span{color:#4783b0;}
+.skin_type02 .write > p.tit span{color:#ff9;}
+.skin_type03 .write > p.tit span{color:#f9f;}
+.skin_type04 .write > p.tit span{color:#9ff;}
+.skin_type05 .write > p.tit span{color:#999;}
+
+.skin_type01 .list_tit .view_btn button.btn_modify{background-color:#4783b0;}
+.skin_type02 .list_tit .view_btn button.btn_modify{background-color:#ff9;}
+.skin_type03 .list_tit .view_btn button.btn_modify{background-color:#f9f;}
+.skin_type04 .list_tit .view_btn button.btn_modify{background-color:#9ff;}
+.skin_type05 .list_tit .view_btn button.btn_modify{background-color:#999;}
+
+.skin_type01 .write .write_btn button.btn_modify{background-color:#4783b0;}
+.skin_type02 .write .write_btn button.btn_modify{background-color:#ff9;}
+.skin_type03 .write .write_btn button.btn_modify{background-color:#f9f;}
+.skin_type04 .write .write_btn button.btn_modify{background-color:#9ff;}
+.skin_type05 .write .write_btn button.btn_modify{background-color:#999;}

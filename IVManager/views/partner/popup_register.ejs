@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>
+		<%=__('Partner')%>
+			<%=__('Register')%>
+	</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.bxslider.min.js"></script>
+	<script type="text/javascript" src="../../js/placeholders.js"></script>
+	<script type="text/javascript" src="../../js/layout.js"></script>
+	<script type="text/javascript" src="../../js/common_js.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/general.css" />
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body style="font-family:'Spoqa Han Sans Neo';">
+	<div class="content" style="position:relative; padding:0 10px 0 10px;">
+		<div class="list_tit" id="registeragent_title">
+            <h3 style="font-size:18px; font-weight:normal; position:absolute;left:10px; top:0px;"> 
+                API 등록
+            </h3>
+		</div>
+		<div class="write">
+			<p
+				style="background-image:url(../images/common/play.png); background-repeat:no-repeat; background-position:left center; font-size:16px; color:#454545; padding-left:22px;">
+				<%=__('Partner')%>
+					<%=__('Information')%>
+			</p>
+
+			<table>
+				<caption>
+					<%=__('BoardWrite')%>
+						<%=__('Register')%>
+				</caption>
+				<colgroup>
+					<col style="width:15%;">
+					<col style="width:35%;">
+					<col style="width:15%;">
+					<col style="width:35%;">
+				</colgroup>
+                <tr>
+				
+                    <th scope="row" style="background-color:lightsteelblue">아이디</th>
+                    <td style="background-color:lightsteelblue">
+                        
+                        <input type="text" style="width:50%;" name="strID" id="strID" required="no"  message="" value="">&nbsp;
+                        <a href="javascript:OnClickCheckID();" class="btn_red"><%=__('Duplication')%><%=__('OK')%></a>
+                        
+                    </td>
+                    
+                        <th scope="row" style="background-color:lightsteelblue">요율</th>
+                    <td style="background-color:lightsteelblue">
+                        <input type="text" style="width:50%;" name="fOdds" id="fOdds" required="no" message="" value="">
+                    </td>
+                </tr>
+                <tr>
+				
+                    <th scope="row" style="background-color:lightsteelblue">닉네임</th>
+                    <td style="background-color:lightsteelblue">
+                        
+                        <input type="text" style="width:50%;" name="strNickname" id="strNickname" required="no"  message="" value="">&nbsp;
+                        <a href="javascript:OnClickCheckNickname();" class="btn_red"><%=__('Duplication')%><%=__('OK')%></a>
+                        
+                    </td>
+                    
+                        <th scope="row" style="background-color:lightsteelblue">보유머니</th>
+                    <td style="background-color:lightsteelblue">
+                        <input type="text" style="width:50%;" name="iCash" id="iCash" required="no" message="" value="">
+                    </td>
+                </tr>
+				<tr>
+					<th scope="row" style="background-color:lightsteelblue">
+						에이전트 코드
+					</th>
+					<td style="background-color:lightsteelblue">
+						<input type="text" style="width:50%;" required="yes" id="strAgentCode" message="">&nbsp;
+                        <a href="javascript:OnClickCheckAgentCode();" class="btn_red" id="check_nickname"><%=__('Duplication')%><%=__('OK')%></a>
+					</td>
+					<th scope="row">
+						<%=__('BankName')%>
+					</th>
+					<td>
+						<input type="text" style="width:50%;" id="strBankName" required="no" message="">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row" style="background-color:lightsteelblue">
+						시크릿 코드
+					</th>
+					<td style="background-color:lightsteelblue">
+						<input type="text" style="width:50%;" required="yes" id="strSecretCode" message="" />&nbsp;
+                        <a href="javascript:OnClickCheckSecretCode();" class="btn_red" id="check_id"><%=__('Duplication')%><%=__('OK')%></a>
+					</td>
+					<th scope="row">
+						<%=__('BankAccount')%>
+					</th>
+					<td>
+						<input type="text" style="width:50%;" id="strBankAccount" required="no" message="">
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">
+						<%=__('Password')%>
+					</th>
+					<td>
+						<input type="text" maxlength="16" id="strPassword" required="yes" message=""
+							style="width:50%; ime-mode:disabled"> <span
+							style="display:inline-block; padding-top:4px;"></span>
+					</td>
+					<th scope="row">
+						<%=__('BankAccountHolderName')%>
+					</th>
+					<td>
+						<input type="text" style="width:50%;" id="strBankAccountHolder" required="no" message="">
+					</td>
+				</tr>
+
+				<tr>
+					<th scope="row">
+						<%=__('PasswordConfirm')%>
+					</th>
+					<td>
+						<input type="text" maxlength="16" id="strPasswordConfirm" required="yes" message=""
+							style="width:50%; ime-mode:disabled">
+					</td>
+
+					<th scope="row">
+						<%=__('Contact')%>
+					</th>
+					<td colspan="3">
+						<input type="text" style="width:50%;" id="strMobile" name="cell" required="no" message="">
+					</td>
+				</tr>
+
+				<tr>
+				</tr>
+
+			</table>
+
+            <table>
+                <caption><%=__('Partner')%> <%=__('Modify')%></caption>
+                <p style="background-image:url(../images/common/play.png); background-repeat:no-repeat; background-position:left center; font-size:16px; color:#454545; padding-left:22px;">URL</p>
+                <colgroup>
+                    <col style="width:15%">
+                    <col style="width:85%">
+                </colgroup>
+                <tr>
+                    <th scope="row">콜백 URL</th>
+                    <td>
+                        <input type="text" maxlength="255" name="strCallbackURL" id="strCallbackURL"required="no"  message="" style="width:90%; ime-mode:disabled" value=""> <span style="display:inline-block; padding-top:4px;" > </span>
+                    </td>
+                </tr>
+    
+            </table>
+
+            <div class="write_btn align_r mt35">
+                <button class="btn_modify" onclick="OnClickRegister();">
+                    <%=__('Save')%>
+                </button>
+                <a href="javascript:self.close();" class="btn_list">
+                    <%=__('Close')%>
+                </a>
+
+            </div>
+		</div>
+	</div>
+	</div>
+
+	<script type="text/javascript">
+
+        let bCheckID = false;
+        let bCheckAgentCode = false;
+        let bCheckSecretCode = false;
+
+        let OnClickCheckID = () => {
+
+            const strID = $('#strID').val();
+
+            $.ajax({
+                type:'post',
+                url: "/partner_popup/request_checkid",
+                context: document.body,
+                data:{strID:strID},
+        
+                success:function(data) {
+
+                    console.log(data);
+                    if ( data.result == 'OK' )
+                    {
+                        alert('사용가능한 아이디 입니다.');
+                        bCheckID = true;
+                    }
+                    else
+                    {
+                        alert('이미 사용중인 아이디 입니다.');
+                        bCheckID = false;
+                    }
+
+                }
+            });
+        }
+
+        let OnClickCheckNickname = () => {
+
+            const strNickname = $('#strNickname').val();
+
+            $.ajax({
+                type:'post',
+                url: "/partner_popup/request_checknickname",
+                context: document.body,
+                data:{strNickname:strNickname},
+
+                success:function(data) {
+
+                    console.log(data);
+                    if ( data.result == 'OK' )
+                    {
+                        alert('사용가능한 닉네임 입니다.');
+                        bCheckID = true;
+                    }
+                    else
+                    {
+                        alert('이미 사용중인 닉네임 입니다.');
+                        bCheckID = false;
+                    }
+
+                }
+            });
+        }
+
+        let OnClickCheckAgentCode = () => {
+
+            const strAgentCode = $('#strAgentCode').val();
+
+            $.ajax({
+                type:'post',
+                url: "/partner_popup/request_checkagentcode",
+                context: document.body,
+                data:{strAgentCode:strAgentCode},
+        
+                success:function(data) {
+
+                    console.log(data);
+                    if ( data.result == 'OK' )
+                    {
+                        alert('사용가능한 코드 입니다.');
+                        bCheckAgentCode = true;
+                    }
+                    else
+                    {
+                        alert('이미 사용중인 코드 입니다.');
+                        bCheckAgentCode = false;
+                    }
+
+                }
+            });
+
+        }
+
+        let OnClickCheckSecretCode = () => {
+            
+            const strSecretCode = $('#strSecretCode').val();
+
+            $.ajax({
+                type:'post',
+                url: "/partner_popup/request_checksecretcode",
+                context: document.body,
+                data:{strSecretCode:strSecretCode},
+
+                success:function(data) {
+
+                    console.log(data);
+                    if ( data.result == 'OK' )
+                    {
+                        alert('사용가능한 코드 입니다.');
+                        bCheckSecretCode = true;
+                    }
+                    else
+                    {
+                        alert('이미 사용중인 코드 입니다.');
+                        bCheckSecretCode = false;
+                    }
+                }
+            });
+        }
+
+        let OnClickRegister = () => {
+            const objectData = {
+                strID:$('#strID').val(),
+                strNickname:$('#strNickname').val(),
+                fOdds:$('#fOdds').val(),
+                strAgentCode:$('#strAgentCode').val(),
+                strSecretCode:$('#strSecretCode').val(),
+                strPassword:$('#strPassword').val(),
+                strPasswordConfirm:$('#strPasswordConfirm').val(),
+                strBankName:$('#strBankName').val(),
+                strBankAccount:$('#strBankAccount').val(),
+                strBankAccountHolder:$('#strBankAccountHolder').val(),
+                strMobile:$('#strMobile').val(),
+                strCallbackURL:$('#strCallbackURL').val()
+            };
+
+            $.ajax({
+                type:'post',
+                url: "/partner_popup/request_register",
+                context: document.body,
+                data:objectData,
+        
+                success:function(data) {
+
+                    console.log(data);
+
+                    if ( data.result == 'OK' )
+                    {
+                        self.close();
+                        opener.location.reload();
+                    }
+                    else
+                    {
+                        alert('등록에 실패 하였습니다.');
+                    }
+                }
+            });
+        }
+
+	</script>
+
+
+</body>
+
+</html>

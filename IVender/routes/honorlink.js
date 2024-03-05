@@ -1,0 +1,383 @@
+
+const express = require('express');
+const router = express.Router();
+
+const IHelper = require('../helpers/IHelpers');
+const ITime = require('../helpers/ITime');
+const IEnum = require('../helpers/IEnum');
+let axios = require('axios');
+router.use(express.json());
+router.use(express.urlencoded({ extended: false }));
+
+const db = require('../db');
+
+let IAccount = 
+{
+    cVender : 'HONORLINK',
+    cLanguage : "KR",
+    cGameType : 'LIVEGAMES',
+    cAPIURL : 'https://api.honorlink.org/api',
+    cAPIKey : 'AgOfVHFvGag3ItIoE2rbIfzoqGyjwy7EkBhq8eBm',
+    // cCallbackToken : '0dc06c15-ba53-40e2-95d1-7b1cfbf6c27a',
+    
+};
+
+
+const headers = {
+    "Authorization": "Bearer " + IAccount.cAPIKey,
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+};
+
+let RequestGameList = async (strVender) => {
+
+    try {
+
+        const responseData = await axios.get(
+
+            IAccount.cAPIURL + `/game-list?vendor=${strVender}`,
+            { headers }
+        );
+
+        return responseData.data;
+
+    } catch (err) {
+        console.log('err', err);
+
+        return null;
+    }
+}
+
+let RequestLobbyList = async (strVender) => {
+
+    try {
+
+        const responseData = await axios.get(
+
+            IAccount.cAPIURL + `/lobby-list`,
+            { headers }
+        );
+
+        let list = [];
+        const data = responseData.data;
+        for ( let i in data )
+        {
+            if ( data[i].vendor == strVender )
+            {
+                list.push(data[i]);
+            }
+        }
+
+        return list;
+
+    } catch (err) {
+        console.log('err', err);
+
+        return null;
+    }
+}
+
+let RequestGameURL = async (strVender, strGameID, strID) => {
+
+    try {
+
+        const responseData = await axios.get(
+
+            IAccount.cAPIURL + `/game-launch-link?username=${strID}&game_id=${strGameID}&vendor=${strVender}`,
+            { headers }
+        );
+
+        return responseData.data;
+
+    } catch (err) {
+        console.log('err', err);
+
+        return null;
+    }
+}
+
+let GetGameURL = async (strAgentCode, strID, strSecretCode, strGameKey, strReturnURL) => {
+
+    const strToken = await IHelper.BuildToken(16);
+
+    if(strToken != ''){
+
+        const strAgentID = `${strAgentCode}-${strID}`;
+        const bResult = await IHelper.UpdateToken(strAgentID, strToken, strAgentCode, strSecretCode, strReturnURL);
+        if(bResult == true)
+        {
+            console.log(`################################################### strAgentID : ${strAgentID}`);
+
+            const res_data = await RequestGameList(strGameKey);
+            //console.log(res_data);
+
+            const res_lobby = await RequestLobbyList(strGameKey);
+            if (res_lobby == null) {
+                let objectData = {eResult:'Error', eCode:'No Game Access'};
+                return objectData;
+            }
+            console.log(res_lobby);
+
+            const res_url = await RequestGameURL(strGameKey, res_lobby[0].id, strAgentID);
+            if (res_url == null || (res_url.link ?? '').length === 0) {
+                let objectData = {eResult:'Error', eCode:'No Game Access'};
+                return objectData;
+            }
+            console.log(res_url);
+
+            let objectData = {eResult:'OK', strURL:res_url.link, strID:strID, strToken:strToken};
+            //res.send(objectData);
+            return objectData;
+        }
+        else
+        {
+            let objectData = {eResult:'Error', eCode:'Invalid Agent'};
+            //res.send(objectData);
+            return objectData;
+        }
+    }
+    else
+    {
+        let objectData = {eResult:'Error', eCode:'Server System Error'};
+        //res.send(objectData);
+        return objectData;
+    }
+}
+
+router.post('/game', async (req, res) => {
+
+    console.log(`##################################################/honorlink/game`);
+    console.log(req.body);
+
+    const strToken = await IHelper.BuildToken(16);
+
+    if(strToken != ''){
+
+        const strAgentID = `${req.body.strAgentCode}-${req.body.strID}`;
+        const bResult = await IHelper.UpdateToken(strAgentID, strToken, req.body.strAgentCode, req.body.strSecretCode);
+        if(bResult == true)
+        {
+            console.log(`################################################### strAgentID : ${strAgentID}`);
+
+            const res_data = await RequestGameList(req.body.strGameKey);
+            //console.log(res_data);
+
+            const res_lobby = await RequestLobbyList(req.body.strGameKey);
+            if (res_lobby == null) {
+                let objectData = {eResult:'Error', eCode:'No Game Access'};
+                return objectData;
+            }
+            console.log(res_lobby);
+
+            const res_url = await RequestGameURL(req.body.strGameKey, res_lobby[0].id, strAgentID);
+            if (res_url == null || (res_url.link ?? '').length === 0) {
+                let objectData = {eResult:'Error', eCode:'No Game Access'};
+                return objectData;
+            }
+            console.log(res_url);
+
+            let objectData = {eResult:'OK', strURL:res_url.link, strID:req.body.strID, strToken:strToken};
+            res.send(objectData);
+        }
+        else
+        {
+            let objectData = {eResult:'Error', eCode:'Invalid Agent'};
+            res.send(objectData);
+        }
+    }
+    else
+    {
+        let objectData = {eResult:'Error', eCode:'Server System Error'};
+
+        res.send(objectData);
+    }
+
+});
+
+let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGameKey) => {
+    const strAgentID = `${strAgentCode}-${strID}`;
+    const res_url = await RequestGameURL(strVender, strGameKey, strAgentID);
+    if (res_url == null || (res_url.link ?? '').length === 0) {
+        let objectData = {eResult:'Error', eCode:'No Game Access'};
+        return objectData;
+    }
+    console.log(res_url);
+    let objectData = {eResult:'OK', strURL:res_url.link, strID:strID, strToken:''};
+    //res.send(objectData);
+    return objectData;
+}
+
+router.post('/gamesm', async (req, res) => {
+
+    console.log(`##################################################/honorlink/gamesm`);
+    console.log(req.body);
+
+    const strAgentID = `${req.body.strAgentCode}-${req.body.strID}`;
+    const res_url = await RequestGameURL(req.body.strGameKey, req.body.symbol, strAgentID);
+    if (res_url == null || (res_url.link ?? '').length === 0) {
+        let objectData = {eResult:'Error', eCode:'No Game Access'};
+        return objectData;
+    }
+    console.log(res_url);
+    let objectData = {eResult:'OK', strURL:res_url.link, strID:req.body.strID, strToken:''};
+    res.send(objectData);
+    // try {
+    //     const data = req.body;
+    //     const cVender = data.strGameKey;
+    //     const responseData = await axios.get(
+    //         IAccount.cAPIURL + `/game-url?vendor_key=${cVender}&game_key=${data.symbol}&account=${req.body.strID}`,
+    //         { headers }
+    //     );
+
+    //     let objectData = {eResult:'OK', strURL:responseData.data.data.url, strID:req.body.strID, strToken:''};
+    //     //res.send(`window.open('${responseData.data.data.url}','IIP Gaming','width='+screen.width+', height='+screen.height+', statusbar=no,scrollbars=auto,toolbar=no,resizable=no');`);
+    //     //res.send(responseData.data.data.url);
+    //     res.send(objectData);
+
+    // } catch (err) {
+    //     console.log('err', err);
+    // }
+});
+
+let GetSlotList = async (strGameKey) => {
+
+    const res_data = await RequestGameList(strGameKey);
+    console.log(res_data);
+    if (res_data == null) {
+        let objectData = {eResult:'Error', eCode:'No Game Access', data: {}};
+        return objectData;
+    }
+    //res.send({eResult:'OK', data:res_data});
+    return {eResult:'OK', data:res_data};
+}
+
+router.post('/request_listsm', async (req, res) => {
+
+    console.log(`##################################################/honorlink/request_listsm`);
+    console.log(req.body);
+
+    const res_data = await RequestGameList(req.body.strGameKey);
+    if (res_data == null) {
+        let objectData = {eResult:'Error', eCode:'No Game Access', data: {}};
+        return objectData;
+    }
+    console.log(res_data);
+
+    // const responseData = await axios.get(
+    //     IAccount.cAPIURL + `/game?vendor_key=${req.body.strGameKey}`,
+    //     { headers }
+    // );
+    // console.log(responseData.data);
+    // console.log(responseData.data.data.game_list[0]);
+    
+    // let gameList= responseData.data.data.game_list;
+
+    // gameList.forEach((element) => {
+    //     element.imgUrl = `https://api-sg0.ppgames.net/game_pic/rec/325/${element.game_key}.png`;
+    // });
+
+    // //res.render('pp/slot', { gameList });
+     res.send({eResult:'OK', data:res_data});
+})
+
+router.get('/balance', async (req, res) => {
+
+    console.log(`##################################################/honorlink/balance`);
+    console.log(req.query);
+
+    const user = await IHelper.GetUserFromID(IAccount.cVender, req.query.username);
+    if (user === null) {
+        // const result = IHelperVivo.makeVivoXMLResult( data, { result: 'FAILED', code: 400 })
+        // return res.header("Content-Type", "application/xml").send(result)
+        return res.json({balance:0});
+    }
+
+    // user 에다가 vivoToken 을 'bcdc9170e317a683dbcb7bac5487a827' 로 넣어놓음.
+    //console.log(user)
+
+    //const strAgentID = `${user.strAgentCode}-${user.strID}`;
+
+    // 해당 회원이 존재하기 때문에 성공을 돌려준다.
+    // const result = IHelperVivo.makeVivoXMLResult( data, {
+    //     result: 'OK',
+    //     //userid: user.strID,
+    //     userid: strAgentID,
+    //     currency: 'KRW',
+    //     balance: user.iCash.toFixed(2),
+    //     gamesessionid: user.iSessionID,
+    // })
+    // return res.header("Content-Type", "application/xml").send(result);
+    return res.json({balance:user.iCash});
+})
+
+let GetGameType = (game) => {
+
+    if ( game.type == 'slot')
+        return 'SM';
+
+    return 'LIVE';
+    
+}
+
+let GetGameCode = (game) => {
+
+    if ( game.type == 'slot')
+        return 200;
+    
+    return 0;
+}
+
+router.post('/changebalance', async (req, res) => {
+
+    console.log(`##################################################/honorlink/changebalance`);
+    console.log(req.body);
+
+    const transaction = req.body.transaction;
+
+    console.log(transaction.details.game);
+
+    const cType = GetGameType(transaction.details.game);
+    const eGameCode = GetGameCode(transaction.details.game);
+
+    switch ( transaction.type )
+    {
+        case 'bet':
+            {
+                const bet = await IHelper.ProcessBet(req.body.username, cType, IAccount.cVender, transaction.details.game.id, '', transaction.details.game.round, -req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                return res.status(200).json({});
+            }
+        case 'win':
+            {
+                const win = await IHelper.ProcessWin(req.body.username, cType, IAccount.cVender, transaction.details.game.id, '', transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                return res.status(200).json({});
+            }
+        case 'cancel':
+            {
+                const cancel = await IHelper.ProcessCancel(req.body.username, cType, IAccount.cVender, transaction.referer_id);
+                return res.status(200).json({});
+            }
+        case 'charge':
+            {
+                return res.status(500).json({});
+            }
+        case 'adjust':
+            {
+                return res.status(500).json({});
+            }
+        case 'promo_win':
+            {
+                return res.status(500).json({});
+            }
+        case 'exceed_credit':
+            {
+                return res.status(500).json({});
+            }
+    }
+});
+
+module.exports = {
+    router:router,
+    GetGameURL:GetGameURL,
+    GetSlotList:GetSlotList,
+    GetSlotGameURL:GetSlotGameURL,
+};

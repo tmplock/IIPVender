@@ -1,0 +1,269 @@
+<div class="sub_wrap">
+	<div class="container clearfix">
+		<div class="content" style="position:relative; padding:0 10px 0 10px;">
+
+			<ul class="list_tab" style="float:right; margin-right:10px; position:relative; z-index:10;">
+				<a href="javascript:OnClickRegister();" id="register_agent" iAgentClass="3" class="btn_gray">API 등록</a>
+			</ul>
+
+
+			<ul class="list_tab" style="margin-bottom:10px;width:75%;z-index:10000;" id="partner_header">
+                <li>
+                    <a href="/partner/list" id="partner_listrealtimeuser">API 목록</a>
+                </li>
+                <li class='on'>
+                    <a href="#" id="partner_listrealtimeuser">게임사 목록</a>
+                </li>
+			</ul>
+		</div>
+		
+		<div class="list">
+
+			<div class="search_wrap" id="div_realtimebet_overview">
+			</div>
+
+			<div style="background-color:#ffffff;text-align:right;padding-right:5px;padding-top:0px;padding-bottom:0px;" colspan="19">
+
+				<!-- <button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:100px;height:25px;text-align:center;background-color: rgb(197, 105, 43);color:white" onclick="OnClickGT();">지급 차감</button> -->
+
+				<input style="width:100px;" type="text" id="datepicker1" class="datepicker"/>~
+				<input style="width:100px;" type="text" id="datepicker2" class="datepicker" />
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="RequestList();"><%=__('Search')%></button>
+				<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%=__('Search')%>
+				<select id="select_roomno" style="width:80px;">
+					<option><%=__('Nickname')%></option>
+				</select>
+				<input style="margin-left:0px;width:100px;" id="strSearchNickname" type="text"/>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="OnClickSearchNickname();"><%=__('Search')%></button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<button class="btn_blue search_btn" search_btn-index="0" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(39, 169, 209);color:white" onclick="OnClickTodayRecord();"><%=__('Today')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="1"style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(53, 209, 39);color:white" onclick="OnClickMonthly1stRecord();"><%=__('Half1')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="2"style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(53, 209, 39);color:white" onclick="OnClickMonthly2ndRecord();"><%=__('Half2')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="3"id="button_toggle_record" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(136, 136, 248);color:white" onclick="OnClickMonthlyRecord();"><%=__('Open')%></button> -->
+			
+			</div>
+
+			<div class="search_wrap" id="div_realtimebet_overview_record">
+			</div>
+		
+			<!-- <br> -->
+
+			<div class="list_tit">
+				<h3>게임사 목록
+				</h3>
+			</div>
+
+	
+			<div class="search_wrap" id="div_realtimebet">
+	
+				<!-- <table class="search_list" style='font-family:"Consalas", Consalas, monospace; font-size:95%'> -->
+				<table class="search_list">
+					<caption><%=__('SearchResult')%></caption>
+					<colgroup>
+						<col style="width:7%;">
+						<col style="width:7%;">
+						<col style="width:7%;text-align:right;">
+						<col style="width:5%;text-align:right;">
+						<col style="width:5%;text-align:right;">
+						<col style="width:10%;text-align:right;">
+						<col style="width:10%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">게임사</th>
+							<th scope="col">구분</th>
+							<th scope="col">베팅금액</th>
+							<th scope="col">승리금액</th>
+							<th scope="col">취소금액</th>
+							<th scope="col">합계</th>
+							<th scope="col">포인트 요율</th>
+						</tr>
+					</thead>
+					<tbody id="list">
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+    DatePicker();
+	$('#datepicker1').val(GetCurrentDate());
+	$('#datepicker2').val(GetCurrentDate());
+
+	let UpdateData = (strVender, list) => {
+
+		for ( let i in list )
+		{
+			const t = list[i];
+
+			console.log(t);
+
+			let iBetTotal = t.iBettingLive + t.iBettingSM;
+			let iWinTotal = t.iWinLive + t.iWinSM;
+			let iCancelTotal = t.iCancelLive + t.iCancelSM;
+
+			let iLiveTotal = t.iBettingLive - t.iWinLive + t.iCancelLive;
+			let iSMTotal = t.iBettingSM - t.iWinSM + t.iCancelSM;
+
+			let iTotal = iBetTotal - iWinTotal + iCancelTotal;
+
+			let tag = `
+			<tr>
+				<td>${strVender}</td>
+				<td>
+					바카라<br/>
+					슬롯<br/>
+					합계
+				</td>
+				<td style="text-align:right;">
+					${t.iBettingLive.toLocaleString()}<br/>
+					${t.iBettingSM.toLocaleString()}<br/>
+					${iBetTotal.toLocaleString()}
+				</td>
+				<td style="text-align:right;">
+					${t.iWinLive.toLocaleString()}<br/>
+					${t.iWinSM.toLocaleString()}<br/>
+					${iWinTotal.toLocaleString()}
+				</td>
+				<td style="text-align:right;">
+					${t.iCancelLive.toLocaleString()}<br/>
+					${t.iCancelSM.toLocaleString()}<br/>
+					${iCancelTotal.toLocaleString()}
+				</td>
+				<td style="text-align:right;">
+					${iLiveTotal.toLocaleString()}<br/>
+					${iSMTotal.toLocaleString()}<br/>
+					${iTotal.toLocaleString()}
+				</td>
+				<td></td>
+			</tr>
+			`;
+			$('#list').append(tag);
+
+			return {iBetTotal:iBetTotal, iWinTotal:iWinTotal, iCancelTotal:iCancelTotal, iTotal:iTotal};
+		}
+		
+	}
+
+	let RequestList = () => {
+
+		const dateStart = $('#datepicker1').val();
+		const dateEnd = $('#datepicker2').val();
+
+		$.ajax({
+			type:'post',
+			url: "/partner/request_listvender",
+			context: document.body,
+			data:{dateStart:dateStart, dateEnd:dateEnd},
+	
+			success:function(data) {
+
+				console.log(data);
+				console.log(data.listVivo);
+
+				$('#list').empty();
+
+				let listObject = [];
+
+				listObject[0] = UpdateData("VIVO", data.listVivo);
+				listObject[1] = UpdateData("Pragmatic Play", data.listPP);
+				listObject[2] = UpdateData("World", data.listWE);
+				listObject[3] = UpdateData("EZUGI", data.listEZUGI);
+				listObject[4] = UpdateData("SpadeApi", data.listSpade);
+				listObject[5] = UpdateData("Habanero", data.listHabanero);
+
+				let objectTotal = {iTotal:0, iBetTotal:0, iWinTotal:0, iCancelTotal:0};
+				for ( let i in listObject )
+				{
+					objectTotal.iTotal += listObject[i].iTotal;
+					objectTotal.iBetTotal += listObject[i].iBetTotal;
+					objectTotal.iWinTotal += listObject[i].iWinTotal;
+					objectTotal.iCancelTotal += listObject[i].iCancelTotal;
+				}
+
+				let tag = `
+				<tr>
+					<td>Total</td>
+					<td>
+					</td>
+					<td style="text-align:right;">
+						${objectTotal.iBetTotal.toLocaleString()}
+					</td>
+					<td style="text-align:right;">
+						${objectTotal.iWinTotal.toLocaleString()}
+					</td>
+					<td style="text-align:right;">
+						${objectTotal.iCancelTotal.toLocaleString()}
+					</td>
+					<td style="text-align:right;">
+						${objectTotal.iTotal.toLocaleString()}
+					</td>
+					<td></td>
+				</tr>
+				`;
+				$('#list').append(tag);
+				// for ( let i in data.listVivo )
+				// {
+				// 	const t = data.listVivo[i];
+
+				// 	console.log(t);
+
+				// 	let iBetTotal = t.iBettingLive + t.iBettingSM;
+				// 	let iWinTotal = t.iWinLive + t.iWinSM;
+				// 	let iCancelTotal = t.iCancelLive + t.iCancelSM;
+
+				// 	let iLiveTotal = t.iBettingLive - t.iWinLive + t.iCancelLive;
+				// 	let iSMTotal = t.iBettingSM - t.iWinSM + t.iCancelSM;
+
+				// 	let iTotal = iBetTotal - iWinTotal + iCancelTotal;
+
+				// 	let tag = `
+				// 	<tr>
+				// 		<td></td>
+				// 		<td>
+				// 			바카라<br/>
+				// 			슬롯<br/>
+				// 			합계
+				// 		</td>
+				// 		<td>
+				// 			${t.iBettingLive.toLocaleString()}<br/>
+				// 			${t.iBettingSM.toLocaleString()}<br/>
+				// 			${iBetTotal.toLocaleString()}
+				// 		</td>
+				// 		<td>
+				// 			${t.iWinLive.toLocaleString()}<br/>
+				// 			${t.iWinSM.toLocaleString()}<br/>
+				// 			${iWinTotal.toLocaleString()}
+				// 		</td>
+				// 		<td>
+				// 			${t.iCancelLive.toLocaleString()}<br/>
+				// 			${t.iCancelSM.toLocaleString()}<br/>
+				// 			${iCancelTotal.toLocaleString()}
+				// 		</td>
+				// 		<td>
+				// 			${iLiveTotal.toLocaleString()}<br/>
+				// 			${iSMTotal.toLocaleString()}<br/>
+				// 			${iTotal.toLocaleString()}
+				// 		</td>
+				// 		<td></td>
+				// 	</tr>
+				// 	`;
+				// 	$('#list').append(tag);
+				// }
+				
+			}
+		});
+	}
+
+	RequestList();
+
+</script>
