@@ -113,8 +113,9 @@ router.post('/request_listvender', async (req, res) => {
     const listEZUGI = await GetVenderData('EZUGI', req.body.dateStart, req.body.dateEnd);
     const listHL = await GetVenderData('HONORLINK', req.body.dateStart, req.body.dateEnd);
     const listHabanero = await GetVenderData('HABANERO', req.body.dateStart, req.body.dateEnd);
+    const listCQ9 = await GetVenderData('CQ9', req.body.dateStart, req.body.dateEnd);
 
-    const objectData = {result:'OK', listVivo:listVivo, listPP:listPP, listWE:listWE, listEZUGI:listEZUGI, listHL:listHL, listHabanero:listHabanero};
+    const objectData = {result:'OK', listVivo:listVivo, listPP:listPP, listWE:listWE, listEZUGI:listEZUGI, listHL:listHL, listHabanero:listHabanero, listCQ9:listCQ9};
 
     res.send(objectData);
 });

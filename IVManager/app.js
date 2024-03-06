@@ -26,6 +26,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+const {Op}= require('sequelize');
+
 const db = require('./db');
 db.sequelize.sync();
 
@@ -85,7 +87,7 @@ app.get('/', (req, res) => {
 
 
 
-app.post('/init', async (req, res) => {
+app.post('/request_init', async (req, res) => {
 
     await db.Tokens.destroy({where:{}, truncate:true});
     await db.Inouts.destroy({where:{}, truncate:true});
@@ -102,8 +104,18 @@ app.post('/init', async (req, res) => {
         });
     }
     
-    res.send({string:'OK'});
-})
+    res.send({result:'OK'});
+});
+
+app.post('/request_removetransactions', async (req, res) => {
+
+    console.log(`/request_removetransactions`);
+    console.log(req.body);
+
+    await db.transactions.destroy({where:{createdAt:{[Op.lte]:req.body.strDate}}});
+
+    res.send({result:'OK'});
+});
 
 const cPort = 3000;
 server.listen(cPort, () => {
