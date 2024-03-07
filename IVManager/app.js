@@ -54,6 +54,7 @@ app.use('/account', require('./routes/account'));
 app.use('/partner', require('./routes/partner'));
 app.use('/partner_popup', require('./routes/partner_popup'));
 app.use('/inout_popup', require('./routes/inout_popup'));
+app.use('/transaction', require('./routes/transaction'));
 
 // app.use((req, res, next) => {
 //     req.io = io;

@@ -230,7 +230,15 @@
                     <% } else { %>
                         <li>
                     <% } %>
-                        <a href="#" id="manage_partner">API 관리</a>
+                        <a href="/partner/list" id="menu_api">API 관리</a>
+                    </li>
+
+                    <% if ( iHeaderFocus == 1 ) { %>
+                        <li class="on">
+                    <% } else { %>
+                        <li>
+                    <% } %>
+                        <a href="/transaction/list" id="menu_transaction">TRANSACTION 관리</a>
                     </li>
 
                     <li>

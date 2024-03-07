@@ -1,0 +1,307 @@
+<div class="sub_wrap">
+	<div class="container clearfix">
+		<div class="content" style="position:relative; padding:0 10px 0 10px;">
+
+			<!-- <ul class="list_tab" style="float:right; margin-right:10px; position:relative; z-index:10;">
+				<a href="javascript:OnClickRegister();" id="register_agent" iAgentClass="3" class="btn_gray">API 등록</a>
+			</ul> -->
+
+
+			<ul class="list_tab" style="margin-bottom:10px;width:75%;z-index:10000;" id="partner_header">
+                <li class='on'>
+                    <a href="#">TRANSACTION 목록</a>
+                </li>
+                <!-- <li>
+                    <a href="/partner/listvender" id="partner_listrealtimeuser">게임사 목록</a>
+                </li> -->
+			</ul>
+		</div>
+		
+		<div class="list">
+
+			<div class="search_wrap" id="div_realtimebet_overview">
+			</div>
+
+			<div style="background-color:#ffffff;text-align:right;padding-right:5px;padding-top:0px;padding-bottom:0px;" colspan="19">
+
+				<input style="width:100px;" type="text" id="datepicker3" class="datepicker" />
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:150px;height:25px;text-align:center;background-color: rgb(201, 65, 65);color:white" onclick="RequestRemove();">이전 데이터 삭제</button>
+
+
+				<!-- <button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:100px;height:25px;text-align:center;background-color: rgb(197, 105, 43);color:white" onclick="OnClickGT();">지급 차감</button> -->
+
+				<input style="width:100px;" type="text" id="datepicker1" class="datepicker"/>~
+				<input style="width:100px;" type="text" id="datepicker2" class="datepicker" />
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="RequestList();"><%=__('Search')%></button>
+
+
+				<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<%=__('Search')%>
+				<select id="select_roomno" style="width:80px;">
+					<option><%=__('Nickname')%></option>
+				</select>
+				<input style="margin-left:0px;width:100px;" id="strSearchNickname" type="text"/>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="OnClickSearchNickname();"><%=__('Search')%></button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<button class="btn_blue search_btn" search_btn-index="0" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(39, 169, 209);color:white" onclick="OnClickTodayRecord();"><%=__('Today')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="1"style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(53, 209, 39);color:white" onclick="OnClickMonthly1stRecord();"><%=__('Half1')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="2"style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(53, 209, 39);color:white" onclick="OnClickMonthly2ndRecord();"><%=__('Half2')%></button>
+				&nbsp;
+				<button class="btn_blue search_btn" search_btn-index="3"id="button_toggle_record" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(136, 136, 248);color:white" onclick="OnClickMonthlyRecord();"><%=__('Open')%></button> -->
+			
+			</div>
+
+			<div class="search_wrap" id="div_realtimebet_overview_record">
+			</div>
+		
+			<!-- <br> -->
+
+			<div class="list_tit">
+				<h3>TRANSACTION 목록
+				</h3>
+
+			</div>
+
+			<div>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 85, 73);color:white" onclick="SetGameType('');">전체</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="SetGameType('LIVE');">라이브</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(37, 120, 199);color:white" onclick="SetGameType('SM');">슬롯</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 85, 73);color:white" onclick="SetType('');">전체</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(27, 116, 19);color:white" onclick="SetType('BET');">베팅</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(36, 84, 173);color:white" onclick="SetType('WIN');">당첨</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(173, 28, 28);color:white" onclick="SetType('SM');">취소</button>
+
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 85, 73);color:white" onclick="SetState('');">전체</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(27, 116, 19);color:white" onclick="SetState('COMPLETE');">완료</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(36, 84, 173);color:white" onclick="SetState('PENDING');">보류</button>
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(173, 28, 28);color:white" onclick="SetState('EXCEPTION');">예외</button>
+
+			</div>
+
+	
+			<div class="search_wrap" id="div_realtimebet">
+	
+				<!-- <table class="search_list" style='font-family:"Consalas", Consalas, monospace; font-size:95%'> -->
+				<table class="search_list">
+					<caption><%=__('SearchResult')%></caption>
+					<colgroup>
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:10%;">
+						<col style="width:20%;">
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:10%;">
+						<col style="width:20%;">
+						<col style="width:10%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">게임코드</th>
+							<th scope="col">에이전트</th>
+							<th scope="col">유저</th>
+							<th scope="col">게임사</th>
+							<th scope="col">게임ID</th>
+							<th scope="col">라운드</th>
+							<th scope="col">타입</th>
+							<th scope="col">상태</th>
+							<th scope="col">금액</th>							
+							<th scope="col">트랜잭션</th>
+							<th scope="col">시간</th>
+						</tr>
+					</thead>
+					<tbody id="list">
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.clicked_menu{
+		color: red;
+	}
+</style>
+<script>
+	$('.search_btn').each(function(index){
+	$(this).attr('search_btn-index', index);
+}).click(function(){
+    /*클릭된 <div>의 menu-index 값을 index 변수에 할당한다.*/
+    var index = $(this).attr('search_btn-index');
+    /*클릭한 <div>에  clicked_menu 클래스 추가*/
+	$('.search_btn[search_btn-index=' + index + ']').addClass('clicked_menu'); 
+    /*그 외 <div>는  clicked_menu 클래스 삭제*/
+	$('.search_btn[search_btn-index!=' + index + ']').removeClass('clicked_menu');
+});
+
+</script>
+
+<script>
+
+    DatePicker();
+	$('#datepicker1').val(GetCurrentDate());
+	$('#datepicker2').val(GetCurrentDate());
+
+	// let OnClickPartner = (strID) => {
+
+	// 	window.open('', 'PopupPartner', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+	// 	var $form = $('<form></form>');
+	// 	$form.attr('action', '/partner_popup/profile');
+	// 	$form.attr('method', 'get');
+	// 	$form.attr('target', 'PopupPartner');
+	// 	$form.appendTo('body');
+
+	// 	var idx = $(`<input type="hidden" value="${strID}" name="strID">`);
+
+	// 	$form.append(idx);
+	// 	$form.submit();
+	// }
+
+	// let OnClickRegister = () => {
+
+	// 	window.open('', 'RegisterPartner', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+	// 	var $form = $('<form></form>');
+	// 	$form.attr('action', '/partner_popup/register');
+	// 	$form.attr('method', 'get');
+	// 	$form.attr('target', 'RegisterPartner');
+	// 	$form.appendTo('body');
+
+	// 	// $form.append(idx);
+	// 	$form.submit();
+	// }
+
+	// let OnClickGT = () => {
+	// 	window.open('', 'PopupInout', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+	// 	var $form = $('<form></form>');
+	// 	$form.attr('action', '/inout_popup/inout');
+	// 	$form.attr('method', 'get');
+	// 	$form.attr('target', 'PopupInout');
+	// 	$form.appendTo('body');
+
+	// 	// $form.append(idx);
+	// 	$form.submit();
+	// }
+
+// 	function OnClickUser(strNickname, strGroupID, iClass, iPermission)
+// {
+//     window.open('', 'popupUser', 'width=1280, height=720, top=100, left=100, fullscreen=no, menubar=no, status=no, toolbar=no, titlebar=yes, location=no, scrollbar=no');
+
+//     var $form = $('<form></form>');
+//     $form.attr('action', '/manage_user_popup/bettingrecord');
+//     $form.attr('method', 'post');
+//     $form.attr('target', 'popupUser');
+//     $form.appendTo('body');
+
+//     var idx = $(`<input type="hidden" value="${strNickname}" name="strNickname">`);
+//     var page = $(`<input type="hidden" value="${strGroupID}" name="strGroupID">`);
+//     var category = $(`<input type="hidden" value=${parseInt(iClass)} name="iClass">`);
+//     var iPermission = $(`<input type="hidden" value=${parseInt(iPermission)} name="iPermission">`);
+
+//     $form.append(idx).append(page).append(category).append(iPermission);
+//     $form.submit();
+// }
+	let eGameType = '';
+	let eType = '';
+	let eState = '';
+
+	let SetGameType = (e) => {
+		eGameType = e;
+
+		RequestList();
+	}
+
+	let SetType = (e) => {
+
+		eType = e;
+		RequestList();
+	}
+
+	let SetState = (e) => {
+
+		eState = e;
+		RequestList();
+	}
+
+	let RequestList = () => {
+
+		const dateStart = $('#datepicker1').val();
+		const dateEnd = $('#datepicker2').val();
+
+		$.ajax({
+			type:'post',
+			url: "/transaction/request_list",
+			context: document.body,
+			data:{dateStart:dateStart, dateEnd:dateEnd, eGameType:eGameType, eType:eType, eState:eState},
+	
+			success:function(data) {
+
+				console.log(data);
+
+				$('#list').empty();
+
+				for ( let i in data.list )
+				{
+					const t = data.list[i];
+
+					let tag = `
+					<tr>
+						<td>${t.eGameType}</td>
+						<td>${t.strAgentCode}</td>
+						<td>${t.strID}</td>
+						<td>${t.strVender}</td>
+						<td>${t.strGameID}</td>
+						<td>${t.strRoundID}</td>
+						<td>${t.eType}</td>
+						<td>${t.eState}</td>
+						<td>${parseInt(t.strAmount).toLocaleString()}</td>
+						<td>${t.strTransactionID}</td>
+						<td>${t.createdAt}</td>
+					</tr>					
+					`;
+					$('#list').append(tag);
+				}
+				
+			}
+		});
+	}
+
+	let RequestRemove = () => {
+
+		const strDateBase = $('#datepicker3').val();
+		if ( strDateBase == '' )
+		{
+			return;
+		}
+
+		$.ajax({
+			type:'post',
+			url: "/transaction/request_removetransactions",
+			context: document.body,
+			data:{strDateBase:strDateBase},
+
+			success:function(data) {
+
+				console.log(data);
+
+				if ( data.result == 'OK')
+				{
+					alert('삭제 하였습니다.');
+					location.reload();
+				}
+				
+			}
+		});
+	}
+
+	RequestList();
+
+</script>
