@@ -190,11 +190,17 @@
 // }
 
 	let GetNumber = (number) => {
-		if ( number == 0 )
+
+		if ( number == '' )
+			return '';
+
+		const cNumber = parseInt(number);
+
+		if ( cNumber == 0 )
 		{
 			return '';
 		}
-		return number.toLocaleString();
+		return cNumber.toLocaleString();
 	}
 
 	let RequestList = () => {
