@@ -248,9 +248,16 @@
 
 				$('#list').empty();
 
+				let color = 'blue';
+
 				for ( let i in data.list )
 				{
 					const t = data.list[i];
+
+					if (t.eType == 'WIN' )
+						color = 'red';
+					else
+						color = 'blue';
 
 					let tag = `
 					<tr>
@@ -260,9 +267,9 @@
 						<td>${t.strVender}</td>
 						<td>${t.strGameID}</td>
 						<td>${t.strRoundID}</td>
-						<td>${t.eType}</td>
+						<td style="color:${color};">${t.eType}</td>
 						<td>${t.eState}</td>
-						<td>${parseInt(t.strAmount).toLocaleString()}</td>
+						<td style="color:${color};">${parseInt(t.strAmount).toLocaleString()}</td>
 						<td>${t.strTransactionID}</td>
 						<td>${t.createdAt}</td>
 					</tr>					
