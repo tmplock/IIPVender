@@ -212,6 +212,10 @@
 
 					const total = parseInt(t.iBetting) - parseInt(t.iWin) - parseInt(t.iCancel);
 
+					let color = 'red';
+					if ( total > 0 )
+						color = 'blue';
+
 					let tag = `
 					<tr>
 						<td>${t.strAgentCode}</td>
@@ -220,11 +224,11 @@
 						<td>${t.strNickname}</td>
 						<td>${parseInt(t.iGives).toLocaleString()}</td>
 						<td>${parseInt(t.iTakes).toLocaleString()}</td>
-						<td>${parseInt(t.iCash).toLocaleString()}</td>
-						<td>${parseInt(t.iBetting).toLocaleString()}</td>
-						<td>${parseInt(t.iWin).toLocaleString()}</td>
+						<td >${parseInt(t.iCash).toLocaleString()}</td>
+						<td style="color:blue;">${parseInt(t.iBetting).toLocaleString()}</td>
+						<td style="color:red;">${parseInt(t.iWin).toLocaleString()}</td>
 						<td>${parseInt(t.iCancel).toLocaleString()}</td>
-						<td>${total.toLocaleString()}</td>
+						<td style="color:${color};">${total.toLocaleString()}</td>
 						<td>${t.strCallbackURL}</td>
 						<td>${t.fOdds}</td>
 						
