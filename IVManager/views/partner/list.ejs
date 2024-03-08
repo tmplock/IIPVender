@@ -189,6 +189,14 @@
 //     $form.submit();
 // }
 
+	let GetNumber = (number) => {
+		if ( number == 0 )
+		{
+			return '';
+		}
+		return number.toLocaleString();
+	}
+
 	let RequestList = () => {
 
 		const dateStart = $('#datepicker1').val();
@@ -222,13 +230,13 @@
 						<td>${t.strSecretCode}</td>
 						<td><a href='javascript:OnClickPartner("${t.strID}");' style='color:blue;'>${t.strID}</a></td>
 						<td>${t.strNickname}</td>
-						<td>${parseInt(t.iGives).toLocaleString()}</td>
-						<td>${parseInt(t.iTakes).toLocaleString()}</td>
-						<td >${parseInt(t.iCash).toLocaleString()}</td>
-						<td style="color:blue;">${parseInt(t.iBetting).toLocaleString()}</td>
-						<td style="color:red;">${parseInt(t.iWin).toLocaleString()}</td>
-						<td>${parseInt(t.iCancel).toLocaleString()}</td>
-						<td style="color:${color};">${total.toLocaleString()}</td>
+						<td>${GetNumber(t.iGives)}</td>
+						<td>${GetNumber(t.Takes)}</td>
+						<td>${GetNumber(t.iCash)}</td>
+						<td style="color:blue;">${GetNumber(t.iBetting)}</td>
+						<td style="color:red;">${GetNumber(t.iWin)}</td>
+						<td>${GetNumber(t.iCancel)}</td>
+						<td style="color:${color};">${GetNumber(total)}</td>
 						<td>${t.strCallbackURL}</td>
 						<td>${t.fOdds}</td>
 						
