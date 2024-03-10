@@ -27,10 +27,16 @@ module.exports = (sequelize, DataTypes, strTableName) => {
         strGameID: {
             type: DataTypes.STRING,
         },
+        strTableID:{
+            type: DataTypes.STRING,
+        },
         strRoundID: {
             type: DataTypes.STRING,
         },
         strAmount: {
+            type: DataTypes.STRING,
+        },
+        strBalance: {
             type: DataTypes.STRING,
         },
         strTarget: {
