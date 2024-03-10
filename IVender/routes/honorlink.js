@@ -339,6 +339,8 @@ router.post('/changebalance', async (req, res) => {
     const cType = GetGameType(transaction.details.game);
     const eGameCode = GetGameCode(transaction.details.game);
 
+    console.log(transaction.details.game);
+
     switch ( transaction.type )
     {
         case 'bet':
