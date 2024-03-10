@@ -114,7 +114,8 @@ exports.UpdateToken = async (strID, strToken, strAgentCode, strSecretCode, strRe
     
     console.log(`IHelper::UpdateToken : ${strID}, ${strToken}, strAgentCode : ${strAgentCode}, strSecretCode : ${strSecretCode}`);
 
-    const user = await db.Users.findOne({where:{strAgentCode:strAgentCode, strSecretCode:strSecretCode}});
+    //const user = await db.Users.findOne({where:{strAgentCode:strAgentCode, strSecretCode:strSecretCode}});
+    const user = await db.Users.findOne({where:{strAgentCode:strAgentCode}});
 
     if ( null != user )
     {
