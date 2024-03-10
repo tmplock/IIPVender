@@ -323,8 +323,10 @@ let GetGameCode = (game) => {
 
     if ( game.type == 'slot')
         return 200;
+    else if ( game.type == 'baccarat' )
+        return 0;
     
-    return 0;
+    return 500;
 }
 
 router.post('/changebalance', async (req, res) => {
@@ -345,16 +347,19 @@ router.post('/changebalance', async (req, res) => {
     {
         case 'bet':
             {
-                const bet = await IHelper.ProcessBet(req.body.username, cType, IAccount.cVender, transaction.details.game.id, '', transaction.details.game.round, -req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                //const bet = await IHelper.ProcessBet(req.body.username, cType, IAccount.cVender, transaction.details.game.id, '', transaction.details.game.round, -req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                const bet = await IHelper.ProcessBet(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, -req.body.amount, 0, '', transaction.referer_id, eGameCode);
                 return res.status(200).json({});
             }
         case 'win':
             {
-                const win = await IHelper.ProcessWin(req.body.username, cType, IAccount.cVender, transaction.details.game.id, '', transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                //const win = await IHelper.ProcessWin(req.body.username, cType, IAccount.cVender, transaction.details.game.id, '', transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                const win = await IHelper.ProcessWin(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
                 return res.status(200).json({});
             }
         case 'cancel':
             {
+                //const cancel = await IHelper.ProcessCancel(req.body.username, cType, IAccount.cVender, transaction.referer_id);
                 const cancel = await IHelper.ProcessCancel(req.body.username, cType, IAccount.cVender, transaction.referer_id);
                 return res.status(200).json({});
             }
