@@ -9,17 +9,13 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 
 const IGetVivoURL = require('./vivo').GetGameURL;
-const IGetPPURL = require('./pp').GetGameURL;
 const IGetWorldURL = require('./worldent').GetGameURL;
 const IGetEzugiURL = require('./ezugi').GetGameURL;
 const IGetHabaneroURL = require('./habanero').GetGameURL;
 const IGetHananeroSlotList = require('./habanero').GetSlotList;
 const IGetHonorLinkURL = require('./honorlink').GetGameURL;
 const IGetHonorLinkSlotURL = require('./honorlink').GetSlotGameURL;
-
-const IGetPPSlotList = require('./pp').GetSlotList;
 const IGetHonorLinkSlotList = require('./honorlink').GetSlotList;
-
 const IGetCQ9URL = require('./cq9').GetGameURL;
 
 router.post('/', async (req, res) => {
@@ -46,7 +42,7 @@ router.post('/', async (req, res) => {
     }
     else if ( req.body.strVender == IEnum.EVender.LIVE_PP )
     {
-        const objectData = await IGetPPURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, req.body.strGameKey, req.body.strReturnURL);
+        const objectData = await IGetHonorLinkURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, 'PragmaticPlay Live', req.body.strReturnURL);
         console.log(objectData);
         return res.send(objectData);
     }
@@ -89,7 +85,7 @@ router.post('/', async (req, res) => {
 
     else if ( req.body.strVender == IEnum.EVender.SM_PP )
     {
-        const objectData = await IGetPPURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, req.body.strGameKey, req.body.strReturnURL);
+        const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, 'PragmaticPlay', req.body.strGameKey, req.body.strReturnURL);
         console.log(objectData);
         return res.send(objectData);
     }
@@ -199,17 +195,13 @@ router.post('/slotlist', async (req, res) => {
     console.log(`##################################################/game/slotlist`);
     console.log(req.body);
 
-    if ( req.body.strVender == IEnum.EVender.SM_PP )
-    {
-        const objectData = await IGetPPSlotList();
-        return res.send(objectData);
-    }
-    else if ( req.body.strVender == IEnum.EVender.SM_HABANERO )
+    if ( req.body.strVender == IEnum.EVender.SM_HABANERO )
     {
         const objectData = await IGetHananeroSlotList();
         return res.send(objectData);
     }
-    else if ( req.body.strVender == IEnum.EVender.SM_MICROGAMING ||
+    else if ( req.body.strVender == IEnum.EVender.SM_PP ||
+                req.body.strVender == IEnum.EVender.SM_MICROGAMING ||
                 req.body.strVender == IEnum.EVender.SM_NETENT ||
                 req.body.strVender == IEnum.EVender.SM_REDTIGER || 
                 req.body.strVender == IEnum.EVender.SM_BLUEPRINT ||
