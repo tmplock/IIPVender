@@ -82,7 +82,12 @@ router.post('/', async (req, res) => {
         console.log(objectData);
         return res.send(objectData);
     }
-
+    else if ( req.body.strVender == IEnum.EVender.LIVE_DREAM )
+    {
+        const objectData = await IGetHonorLinkURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "DreamGame", req.body.strReturnURL);
+        console.log(objectData);
+        return res.send(objectData);
+    }
     else if ( req.body.strVender == IEnum.EVender.SM_PP )
     {
         const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, 'PragmaticPlay', req.body.strGameKey, req.body.strReturnURL);
