@@ -54,6 +54,7 @@ const EnumVender = Object.freeze({
     "LIVE_DOWON":"LIVE_DOWON",
     "LIVE_CQ9":"LIVE_CQ9",
     "LIVE_DREAM":"LIVE_DREAM",
+    "LIVE_ASIAGAMING":"LIVE_ASIAGAMING",
 
     "SM_PP":"SM_PP",
     "SM_HABANERO":"SM_HABANERO",
