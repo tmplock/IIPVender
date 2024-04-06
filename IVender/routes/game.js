@@ -211,25 +211,63 @@ router.post('/slotlist', async (req, res) => {
         const objectData = await IGetHananeroSlotList();
         return res.send(objectData);
     }
-    else if ( req.body.strVender == IEnum.EVender.SM_PP ||
-                req.body.strVender == IEnum.EVender.SM_MICROGAMING ||
-                req.body.strVender == IEnum.EVender.SM_NETENT ||
-                req.body.strVender == IEnum.EVender.SM_REDTIGER || 
-                req.body.strVender == IEnum.EVender.SM_BLUEPRINT ||
-                req.body.strVender == IEnum.EVender.SM_DRAGONSOFT ||
-                req.body.strVender == IEnum.EVender.SM_RELAX ||
-                req.body.strVender == IEnum.EVender.SM_ELK ||
-                req.body.strVender == IEnum.EVender.SM_PLAYSTAR ||
-                req.body.strVender == IEnum.EVender.SM_BOOONGO ||
-                req.body.strVender == IEnum.EVender.SM_PLAYSON ||
-                req.body.strVender == IEnum.EVender.SM_CQ9 ||
-                req.body.strVender == IEnum.EVender.SM_ASIASLOT ||
-                req.body.strVender == IEnum.EVender.SM_BETSOFT 
-            )
+    else
     {
-        const objectData = await IGetHonorLinkSlotList(req.body.strGameKey);
-        return res.send(objectData);
+        let strGameKey = '';
+        if ( req.body.strVender == IEnum.EVender.SM_PP )
+            strGameKey = 'PragmaticPlay';
+        if ( req.body.strVender == IEnum.EVender.SM_MICROGAMING )
+            strGameKey = "MicroGaming Plus Slo";
+        if ( req.body.strVender == IEnum.EVender.SM_NETENT )
+            strGameKey = "netent";
+        if ( req.body.strVender == IEnum.EVender.SM_REDTIGER )
+            strGameKey = "redtiger";
+        if ( req.body.strVender == IEnum.EVender.SM_BLUEPRINT )
+            strGameKey = "Blueprint Gaming";
+        if ( req.body.strVender == IEnum.EVender.SM_DRAGONSOFT )
+            strGameKey = "Dragoon Soft";
+        if ( req.body.strVender == IEnum.EVender.SM_RELAX )
+            strGameKey = "Relax Gaming";
+        if ( req.body.strVender == IEnum.EVender.SM_ELK )
+            strGameKey = "Elk Studios";
+        if ( req.body.strVender == IEnum.EVender.SM_PLAYSTAR )
+            strGameKey = "PlayStar";
+        if ( req.body.strVender == IEnum.EVender.SM_BOOONGO )
+            strGameKey = "Booongo";
+        if ( req.body.strVender == IEnum.EVender.SM_PLAYSON )
+            strGameKey = "PlaySon";
+        if ( req.body.strVender == IEnum.EVender.SM_CQ9 )
+            strGameKey = "CQ9";
+        if ( req.body.strVender == IEnum.EVender.SM_ASIASLOT )
+            strGameKey = "Asia Gaming Slot";
+        if ( req.body.strVender == IEnum.EVender.SM_BETSOFT )
+            strGameKey = 'Skywind Slot';
+    
+        {
+            const objectData = await IGetHonorLinkSlotList(strGameKey);
+            return res.send(objectData);
+        } 
     }    
+
+    // else if ( req.body.strVender == IEnum.EVender.SM_PP ||  //  'PragmaticPlay'
+    //             req.body.strVender == IEnum.EVender.SM_MICROGAMING ||   //  "MicroGaming Plus Slo"
+    //             req.body.strVender == IEnum.EVender.SM_NETENT ||    //  "netent"
+    //             req.body.strVender == IEnum.EVender.SM_REDTIGER ||  //  "redtiger"
+    //             req.body.strVender == IEnum.EVender.SM_BLUEPRINT || //"Blueprint Gaming"
+    //             req.body.strVender == IEnum.EVender.SM_DRAGONSOFT ||    //"Dragoon Soft"
+    //             req.body.strVender == IEnum.EVender.SM_RELAX || //"Relax Gaming"
+    //             req.body.strVender == IEnum.EVender.SM_ELK ||   //"Elk Studios"
+    //             req.body.strVender == IEnum.EVender.SM_PLAYSTAR ||  //"PlayStar"
+    //             req.body.strVender == IEnum.EVender.SM_BOOONGO ||   //"Booongo"
+    //             req.body.strVender == IEnum.EVender.SM_PLAYSON ||   //"PlaySon"
+    //             req.body.strVender == IEnum.EVender.SM_CQ9 ||   //"CQ9"
+    //             req.body.strVender == IEnum.EVender.SM_ASIASLOT ||  //Asia Gaming Slot
+    //             req.body.strVender == IEnum.EVender.SM_BETSOFT  //Skywind Slot
+    //         )
+    // {
+    //     const objectData = await IGetHonorLinkSlotList(req.body.strGameKey);
+    //     return res.send(objectData);
+    // }    
 }); 
 
 module.exports = router;
