@@ -194,12 +194,18 @@ router.post('/game', async (req, res) => {
 
 });
 
-let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGameKey) => {
+let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGameKey, strReturnURL) => {
     const strAgentID = `${strAgentCode}-${strID}`;
     const res_url = await RequestGameURL(strVender, strGameKey, strAgentID);
     if (res_url == null || (res_url.link ?? '').length === 0) {
         let objectData = {eResult:'Error', eCode:'No Game Access'};
         return objectData;
+    }
+    
+    if ( null == IHelper.GetUserFromID(IAccount.cVender, strAgentID))
+    {
+        const strToken = await IHelper.BuildToken(16);
+        const bResult = await IHelper.UpdateToken(strAgentID, strToken, strAgentCode, strSecretCode, strReturnURL);
     }
     console.log(res_url);
     let objectData = {eResult:'OK', strURL:res_url.link, strID:strID, strToken:''};
