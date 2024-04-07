@@ -202,8 +202,11 @@ let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGa
         return objectData;
     }
     
-    if ( null == IHelper.GetUserFromID(IAccount.cVender, strAgentID))
+    const token = IHelper.GetUserFromID(IAccount.cVender, strAgentID)
+    console.log(`##### token : ${strAgentID}`);
+    if ( null == token )
     {
+        console.log(`##### token is null`);
         const strToken = await IHelper.BuildToken(16);
         const bResult = await IHelper.UpdateToken(strAgentID, strToken, strAgentCode, strSecretCode, strReturnURL);
     }
@@ -267,7 +270,7 @@ router.post('/request_listsm', async (req, res) => {
         let objectData = {eResult:'Error', eCode:'No Game Access', data: {}};
         return objectData;
     }
-    console.log(res_data);
+    //console.log(res_data);
 
     // const responseData = await axios.get(
     //     IAccount.cAPIURL + `/game?vendor_key=${req.body.strGameKey}`,
