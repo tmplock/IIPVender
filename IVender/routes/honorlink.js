@@ -196,6 +196,7 @@ router.post('/game', async (req, res) => {
 
 let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGameKey, strReturnURL) => {
 
+    console.log(`###### GetSlotGameURL : ${strAgentCode}-${strID}`);
     console.log(`/GetSlotGameURL`);
 
     const strAgentID = `${strAgentCode}-${strID}`;
