@@ -112,7 +112,7 @@ exports.RequestAxios = RequestAxios;
 
 exports.UpdateToken = async (strID, strToken, strAgentCode, strSecretCode, strReturnURL) => {
     
-    console.log(`IHelper::UpdateToken : ${strID}, ${strToken}, strAgentCode : ${strAgentCode}, strSecretCode : ${strSecretCode}`);
+    console.log(`IHelper::UpdateToken : ${strID}, ${strToken}, strAgentCode : ${strAgentCode}, strSecretCode : ${strSecretCode}, strReturnURL : ${strReturnURL}`);
 
     //const user = await db.Users.findOne({where:{strAgentCode:strAgentCode, strSecretCode:strSecretCode}});
     const user = await db.Users.findOne({where:{strAgentCode:strAgentCode}});
