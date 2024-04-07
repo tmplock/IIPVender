@@ -206,7 +206,7 @@ let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGa
         return objectData;
     }
     
-    const token = IHelper.GetUserFromID(IAccount.cVender, strAgentID)
+    const token = await IHelper.GetUserFromID(IAccount.cVender, strAgentID)
     console.log(`##### token : ${strAgentID}`);
     if ( null == token )
     {
