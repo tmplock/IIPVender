@@ -688,20 +688,23 @@ exports.ProcessCancel = async (strAgentID, eGameType, strVender, strTransactionI
         const cAddress = `${token.strCallbackURL}/cancel`;
 
         let refund = await db.transactions.findOne({where:{strTransactionID:strTransactionID}});
-        if ( refund.eType == 'BET' )
+        if ( refund != null )
         {
-            await this.UpdateAgentCash(token.strAgentCode, parseFloat(refund.strAmount));
-        }
-        else if ( refund.eType == 'WIN' )
-        {
-            await this.UpdateAgentCash(token.strAgentCode, -parseFloat(refund.strAmount));
-        }
-
-        const req = await this.AxiosCancel(cAddress, token.strID, strVender, strTransactionID, refund.strGameID, refund.strRoundID, refund.eType);
-        if ( req != null )
-        {
-            await db.transactions.update({eType:'REFUND', strBalance:req.iCash}, {where:{strTransactionID:strTransactionID}});
-            return {iCash:req.iCash, eState:'COMPLETE'};
+            if ( refund.eType == 'BET' )
+            {
+                await this.UpdateAgentCash(token.strAgentCode, parseFloat(refund.strAmount));
+            }
+            else if ( refund.eType == 'WIN' )
+            {
+                await this.UpdateAgentCash(token.strAgentCode, -parseFloat(refund.strAmount));
+            }
+    
+            const req = await this.AxiosCancel(cAddress, token.strID, strVender, strTransactionID, refund.strGameID, refund.strRoundID, refund.eType);
+            if ( req != null )
+            {
+                await db.transactions.update({eType:'REFUND', strBalance:req.iCash}, {where:{strTransactionID:strTransactionID}});
+                return {iCash:req.iCash, eState:'COMPLETE'};
+            }
         }
     }
     return null;    
