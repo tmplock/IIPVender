@@ -195,6 +195,9 @@ router.post('/game', async (req, res) => {
 });
 
 let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGameKey, strReturnURL) => {
+
+    console.log(`/GetSlotGameURL`);
+
     const strAgentID = `${strAgentCode}-${strID}`;
     const res_url = await RequestGameURL(strVender, strGameKey, strAgentID);
     if (res_url == null || (res_url.link ?? '').length === 0) {
