@@ -133,7 +133,7 @@ exports.UpdateToken = async (strID, strToken, strAgentCode, strSecretCode, strRe
                     iAuth:0
                 }
             );
-            await db.Users.update({});
+            //await db.Users.update({});
         }
         else
         {
