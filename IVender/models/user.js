@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             allowNull: false,
         },
+        strNickname : {
+            type: DataTypes.STRING,
+        },
         strPassword: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -58,6 +61,18 @@ module.exports = (sequelize, DataTypes) => {
         },
         eState: {
             type:DataTypes.ENUM('NORMAL', 'NOTICE', 'BLOCK', 'STANDBY'),
+        },
+        strBankName: {
+            type: DataTypes.STRING,
+        },
+        strBankAccount: {
+            type: DataTypes.STRING,
+        },
+        strBankAccountHolder: {
+            type: DataTypes.STRING,
+        },
+        strMobile: {
+            type: DataTypes.STRING,
         },
         createdAt: {
             type: DataTypes.DATE,
