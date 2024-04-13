@@ -26,6 +26,16 @@ router.get('/list', async(req, res) => {
         res.render('transaction/list', {iLayout:0, user:req.user, iHeaderFocus:1});
 });
 
+router.get('/search', async(req, res) => {
+
+    console.log(`/transaction/search`);
+
+    if ( req.user == null )
+        res.redirect('/account/login');
+    else
+        res.render('transaction/search', {iLayout:0, user:req.user, iHeaderFocus:1});
+});
+
 router.post('/request_list', async (req, res) => {
 
     console.log(`/transaction/request_list`);
@@ -77,6 +87,63 @@ router.post('/request_removetransactions', async (req, res) => {
     await db.transactions.destroy({where:{createdAt:{[Op.lte]:req.body.strDateBase}}});
 
     res.send({result:'OK'});
+});
+
+let Find = (list, strVender) => {
+
+    for ( let i in list )
+    {
+        if ( list[i].strVender == strVender )
+        {
+            return list[i];
+        }        
+    }
+    return null;
+}
+
+let BuildList = (listDB) => {
+
+    let list = [];
+
+    for ( let i in listDB )
+    {
+        let object = Find(list, listDB[i].strVender);
+        if ( object == null )
+        {
+            object = {strVender:listDB[i].strVender, iBet:0, iWin:0, iCancel:0};
+            list.push(object);
+        }
+
+        if ( listDB[i].eType == 'BET' )
+            object.iBet += parseInt(listDB[i].strAmount);
+        else if ( listDB[i].eType == 'WIN' )
+            object.iWin += parseInt(listDB[i].strAmount);
+        else
+            object.iCancel += parseInt(list[i].strAmount);            
+    }
+    return list;
+}
+
+router.post('/request_search', async (req, res) => {
+
+    console.log(`/transaction/request_search`);
+    console.log(req.body);
+
+    let list = await db.transactions.findAll({
+        where: {  
+            createdAt:{
+                [Op.between]:[ req.body.dateStart, require('moment')(req.body.dateEnd).add(1, 'days').format('YYYY-MM-DD')],
+            },
+            strID:req.body.strID,
+        },
+        order:[['createdAt','DESC']],
+    });
+
+    let listData = BuildList(list);
+
+    const objectData = {result:'OK', list:listData };
+
+    res.send(objectData);
 });
 
 

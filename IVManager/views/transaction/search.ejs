@@ -1,0 +1,150 @@
+<div class="sub_wrap">
+	<div class="container clearfix">
+		<div class="content" style="position:relative; padding:0 10px 0 10px;">
+
+			<!-- <ul class="list_tab" style="float:right; margin-right:10px; position:relative; z-index:10;">
+				<a href="javascript:OnClickRegister();" id="register_agent" iAgentClass="3" class="btn_gray">API 등록</a>
+			</ul> -->
+
+
+			<ul class="list_tab" style="margin-bottom:10px;width:75%;z-index:10000;" id="partner_header">
+                <li>
+                    <a href="/transaction/list">TRANSACTION 목록</a>
+                </li>
+                 <li class='on'>
+                    <a href="#">TRANSACTION 검색</a>
+                </li>
+			</ul>
+		</div>
+		
+		<div class="list">
+
+			<div class="search_wrap" id="div_realtimebet_overview">
+			</div>
+
+			<div style="background-color:#ffffff;text-align:right;padding-right:5px;padding-top:0px;padding-bottom:0px;" colspan="19">
+
+				<input style="width:100px;" type="text" id="strSearchID"/>
+				<!-- <button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:150px;height:25px;text-align:center;background-color: rgb(201, 65, 65);color:white" onclick="RequestSearch();">회원 데이터 검색</button> -->
+
+
+				<input style="width:100px;" type="text" id="datepicker1" class="datepicker"/>~
+				<input style="width:100px;" type="text" id="datepicker2" class="datepicker" />
+				<button class="btn_blue" style="border:1px solid rgb(95, 93, 93);width:70px;height:25px;text-align:center;background-color: rgb(74, 141, 68);color:white" onclick="RequestSearch();"><%=__('Search')%></button>
+
+			</div>
+
+			<div class="search_wrap" id="div_realtimebet_overview_record">
+			</div>
+		
+			<!-- <br> -->
+
+			<div class="list_tit">
+				<h3>TRANSACTION 검색 목록
+				</h3>
+
+			</div>
+
+			<div class="search_wrap" id="div_realtimebet">
+	
+				<!-- <table class="search_list" style='font-family:"Consalas", Consalas, monospace; font-size:95%'> -->
+				<table class="search_list">
+					<caption><%=__('SearchResult')%></caption>
+					<colgroup>
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:5%;">
+						<col style="width:10%;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">게임사</th>
+							<th scope="col">베팅</th>
+							<th scope="col">당첨</th>
+							<th scope="col">기타</th>
+							<th scope="col">윈로스</th>
+						</tr>
+					</thead>
+					<tbody id="list">
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.clicked_menu{
+		color: red;
+	}
+</style>
+<script>
+	$('.search_btn').each(function(index){
+	$(this).attr('search_btn-index', index);
+}).click(function(){
+    /*클릭된 <div>의 menu-index 값을 index 변수에 할당한다.*/
+    var index = $(this).attr('search_btn-index');
+    /*클릭한 <div>에  clicked_menu 클래스 추가*/
+	$('.search_btn[search_btn-index=' + index + ']').addClass('clicked_menu'); 
+    /*그 외 <div>는  clicked_menu 클래스 삭제*/
+	$('.search_btn[search_btn-index!=' + index + ']').removeClass('clicked_menu');
+});
+
+</script>
+
+<script>
+
+    DatePicker();
+	$('#datepicker1').val(GetCurrentDate());
+	$('#datepicker2').val(GetCurrentDate());
+
+	let RequestSearch = () => {
+
+		const dateStart = $('#datepicker1').val();
+		const dateEnd = $('#datepicker2').val();
+
+		const strID = $('#strSearchID').val();
+
+		 console.log(`RequestSearch : ${strID}, ${dateStart}, ${dateEnd}`);
+
+		if ( strID.length <= 0 )
+			return;
+
+
+		$.ajax({
+			type:'post',
+			url: "/transaction/request_search",
+			context: document.body,
+			data:{dateStart:dateStart, dateEnd:dateEnd, strID:strID},
+	
+			success:function(data) {
+
+				console.log(data);
+
+				$('#list').empty();
+
+				let color = 'blue';
+
+				for ( let i in data.list )
+				{
+					const t = data.list[i];
+
+					let tag = `
+					<tr>
+						<td>${t.strVender}</td>
+						<td>${t.iBet.toLocaleString()}</td>
+						<td>${t.iWin.toLocaleString()}</td>
+						<td>${t.iCancel.toLocaleString()}</td>
+						<td>${(t.iBet-t.iWin).toLocaleString()}</td>
+					</tr>					
+					`;
+					$('#list').append(tag);
+				}
+				
+			}
+		});
+	}
+
+</script>

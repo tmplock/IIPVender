@@ -20,7 +20,7 @@ const ProcessPendingTransaction = schedule.scheduleJob('1,10,20,30,40,50 * * * *
 
     console.log(`aaa`);
     const listPending = await db.transactions.findAll({where:{eState:'PENDING'}});
-    console.log(`Pending Length : ${listPending.length}`);
+    console.log(`Pending Length : ${listPending.length}, ID = ${listPending[0].id}`);
 })
 
 router.get('/list', async(req, res) => {
