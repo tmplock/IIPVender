@@ -537,7 +537,7 @@ exports.ProcessBet = async (strAgentID, eGameType, strVender, strGameID, strTabl
             console.log(`ProcessBet : ${req.result}`);
             if ( req.result == 'OK' )
             {
-                await this.UpdateAgentCash(token.strAgentCode, -parseFloat(strAmount));
+                //await this.UpdateAgentCash(token.strAgentCode, -parseFloat(strAmount));
                 const bet = await this.CreateBet(token.strAgentCode, token.strID, eGameType, strVender, iGameCode, strGameID, strTableID, strRoundID, strAmount, req.iCash, strTarget, strDesc, strTransactionID, 'BET', 'COMPLETE');
                 return {iCash:req.iCash, iBetID:bet.id, eState:'COMPLETE', createdAt:bet.createdAt};
             }
@@ -596,7 +596,7 @@ exports.ProcessWin = async (strAgentID, eGameType, strVender, strGameID, strTabl
         const req = await this.AxiosBet(cAddress, token.strAgentCode, token.strID, eGameType, strVender, strGameID, strTableID, strRoundID, strAmount, strTarget, strDesc, strTransactionID, iGameCode);
         if ( req != null )
         {
-            await this.UpdateAgentCash(token.strAgentCode, -parseFloat(strAmount));
+            //await this.UpdateAgentCash(token.strAgentCode, -parseFloat(strAmount));
             const bet = await this.CreateBet(token.strAgentCode, token.strID, eGameType, strVender, iGameCode, strGameID, strTableID, strRoundID, strAmount, req.iCash, strTarget, strDesc, strTransactionID, 'WIN', 'COMPLETE');
             return {iCash:req.iCash, eState:'COMPLETE', createdAt:bet.createdAt};
         }
@@ -692,11 +692,11 @@ exports.ProcessCancel = async (strAgentID, eGameType, strVender, strTransactionI
         {
             if ( refund.eType == 'BET' )
             {
-                await this.UpdateAgentCash(token.strAgentCode, parseFloat(refund.strAmount));
+                //await this.UpdateAgentCash(token.strAgentCode, parseFloat(refund.strAmount));
             }
             else if ( refund.eType == 'WIN' )
             {
-                await this.UpdateAgentCash(token.strAgentCode, -parseFloat(refund.strAmount));
+                //await this.UpdateAgentCash(token.strAgentCode, -parseFloat(refund.strAmount));
             }
     
             const req = await this.AxiosCancel(cAddress, token.strID, strVender, strTransactionID, refund.strGameID, refund.strRoundID, refund.eType);
