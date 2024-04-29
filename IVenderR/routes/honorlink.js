@@ -20,7 +20,8 @@ let IAccount =
     cLanguage : "KR",
     cGameType : 'LIVEGAMES',
     cAPIURL : 'https://api.honorlink.org/api',
-    cAPIKey : 'T5nBPqAwFGSYbUCy54HPLMY6jODGfAZdIY642wh3',
+    //cAPIKey : 'T5nBPqAwFGSYbUCy54HPLMY6jODGfAZdIY642wh3',
+    cAPIKey : 'AgOfVHFvGag3ItIoE2rbIfzoqGyjwy7EkBhq8eBm',
     // cCallbackToken : '0dc06c15-ba53-40e2-95d1-7b1cfbf6c27a',
     
 };
