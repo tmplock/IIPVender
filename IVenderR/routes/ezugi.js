@@ -934,6 +934,7 @@ router.post('/credit', async (req, res) => {
         {
             errorCode = 1;
             errorDescription = 'Negative amount';
+            balance = processwin.iCash;
         }
         else
         {
@@ -941,16 +942,16 @@ router.post('/credit', async (req, res) => {
         }
     }
 
-    user = await IHelper.GetUserFromID(IAccount.cVender, req.body.uid);
-    if(user == null)
-    {
-        errorCode = 7;
-        errorDescription = 'User not found';
-    }
-    else
-    {
-        balance = parseFloat(user.iCash);
-    }
+    // user = await IHelper.GetUserFromID(IAccount.cVender, req.body.uid);
+    // if(user == null)
+    // {
+    //     errorCode = 7;
+    //     errorDescription = 'User not found';
+    // }
+    // else
+    // {
+    //     balance = parseFloat(user.iCash);
+    // }
 
 
     let ret = {
