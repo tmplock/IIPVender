@@ -934,11 +934,11 @@ router.post('/credit', async (req, res) => {
         {
             errorCode = 1;
             errorDescription = 'Negative amount';
-            balance = processwin.iCash;
         }
         else
         {
             strTime = processwin.createdAt;
+            balance = processwin.iCash;
         }
     }
 
