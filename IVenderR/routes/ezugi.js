@@ -968,6 +968,9 @@ router.post('/credit', async (req, res) => {
         errorDescription: errorDescription,
         timestamp: IHelper.GetUnixTimeStamp()
     }
+
+    console.log(`########## EZUGI CREDIT : balance : ${balance}`);
+
     res.send(ret);
 });
 
