@@ -95,7 +95,7 @@ app.get('/testvalue', async (req, res) => {
 })
 
 
-const cPort = 5000;
+const cPort = 3001;
 server.listen(cPort, () => {
     console.log(`IVender Server is started At ${cPort}`);
 });
