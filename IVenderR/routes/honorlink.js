@@ -105,7 +105,7 @@ let GetGameURL = async (strAgentCode, strID, strSecretCode, strGameKey, strRetur
     if(strToken != ''){
 
         const strAgentID = `${strAgentCode}-${strID}`;
-        const bResult = await IHelper.UpdateToken(strAgentID, strToken, strAgentCode, strSecretCode, strReturnURL);
+        const bResult = await IHelper.UpdateToken(strAgentID, strToken, '', strAgentCode, strSecretCode, strReturnURL);
         if(bResult == true)
         {
             console.log(`################################################### strAgentID : ${strAgentID}`);
@@ -156,7 +156,7 @@ router.post('/game', async (req, res) => {
     if(strToken != ''){
 
         const strAgentID = `${req.body.strAgentCode}-${req.body.strID}`;
-        const bResult = await IHelper.UpdateToken(strAgentID, strToken, req.body.strAgentCode, req.body.strSecretCode);
+        const bResult = await IHelper.UpdateToken(strAgentID, strToken, '', req.body.strAgentCode, req.body.strSecretCode);
         if(bResult == true)
         {
             console.log(`################################################### strAgentID : ${strAgentID}`);
@@ -218,7 +218,7 @@ let GetSlotGameURL = async (strAgentCode, strID, strSecretCode, strVender, strGa
     {
         console.log(`##### token is null`);
         const strToken = await IHelper.BuildToken(16);
-        const bResult = await IHelper.UpdateToken(strAgentID, strToken, strAgentCode, strSecretCode, strReturnURL);
+        const bResult = await IHelper.UpdateToken(strAgentID, strToken, '',strAgentCode, strSecretCode, strReturnURL);
     }
     console.log(res_url);
     let objectData = {eResult:'OK', strURL:res_url.link, strID:strID, strToken:''};
