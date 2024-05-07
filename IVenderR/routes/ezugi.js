@@ -185,12 +185,12 @@ let GetGameCodeFromBettingTarget = (strBetType) => {
     return IEnum.EGameCode.Baccarat;
 }
 
-let GetTarget = (strBetType) => {
+// let GetTarget = (strBetType) => {
 
-    console.log(`##### GetBetType : ${strBetType}`);
+//     console.log(`##### GetBetType : ${strBetType}`);
 
-    return IEnum.EBettingAccount.Baccarat;
-}
+//     return IEnum.EBettingAccount.Baccarat;
+// }
 
 let objectT = {debitAmount:50000};
 objectT.debitAmount = objectT.debitAmount.toFixed(2);
@@ -816,6 +816,95 @@ router.post('/rollback', async (req, res) => {
 //     console.log(IHelper.GetUnixTimeStamp());
 // }, 1000);
 
+let GetTarget = (objectBet, objectWin) => {
+
+    let listBetKey = Object.keys(objectBet);
+    let listBetValue = Object.values(objectBet);
+
+    let listWinKey = Object.keys(objectWin);
+    let listWinValue = Object.values(objectWin);
+
+    let list = {}
+
+    for ( let i in listBetKey )
+    {
+        switch ( listBetKey[i] )
+        {
+            case 'PlayerBet':
+                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.Player, iBet:listBetValue[i], iWin:0};
+                break;
+            case 'BankerBet':
+                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.Banker, iBet:listBetValue[i], iWin:0};
+                break;
+            case 'TieBet':
+                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.Tie, iBet:listBetValue[i], iWin:0};
+                break;
+            case 'PlayerPair':
+                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.PlayerPair, iBet:listBetValue[i], iWin:0};
+                break;
+            case 'BankerPair':
+                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.BankerPair, iBet:listBetValue[i], iWin:0};
+                break;
+
+            case 'PlayerOver':
+                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.PlayerOver, iBet:listBetValue[i], iWin:0};
+                break;
+            case 'PlayerUnder':
+                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.PlayerUnder, iBet:listBetValue[i], iWin:0};
+                break;
+            case 'BankerOver':
+                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.BankerOver, iBet:listBetValue[i], iWin:0};
+                break;
+            case 'BankerUnder':
+                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.BankerUnder, iBet:listBetValue[i], iWin:0};
+                break;
+
+            default:
+                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.LiveCasino, iBet:listBetValue[i], iWin:0};
+        }
+    }
+
+    for ( let i in listWinKey )
+    {
+        list[listWinKey[i]].iWin = listWinValue[i];
+    }
+
+    let listFinal = [];
+
+    for ( let i in list )
+    {
+        listFinal.push({iGameCode:list[i].iGameCode, iTarget:list[i].iTarget, iBet:list[i].iBet, iWin:list[i].iWin});
+    }
+
+    return listFinal;
+}
+
+let GetCards = (banker, player) => {
+    // {'P':[{'C':'KC', 'N':'10'},{'C':'Ah','N':'11'},{'C':'9c','N':'9'}],'B':[{'C':'Qd','N':'10'},{'C':'6s','N':'6'}]} 형태로 만듬
+    try {
+        let blist = [];
+        for (let i in banker) {
+            blist.push({
+                'C':`${banker[i].CardName}`,
+                'N':`${banker[i].CardValue}`
+            });
+        }
+
+        let plist = [];
+        for (let i in player) {
+            plist.push({
+                'C':`${player[i].CardName}`,
+                'N':`${player[i].CardValue}`
+            });
+        }
+        if (blist.length > 0 && plist.length > 0) {
+            return {'B': blist, 'P': plist};
+        }
+    } catch (err) {
+    }
+    return null;
+}
+
 router.post('/credit', async (req, res) => {
     
     console.log(`##################################################/ezugi/credit`);
@@ -823,6 +912,13 @@ router.post('/credit', async (req, res) => {
 
     const rd = JSON.parse(req.body.gameDataString);
     console.log(rd);
+
+    const listDetail = GetTarget(rd.BetsList, rd.WinningBets);
+    console.log(`##### listDetail`);
+    console.log(listDetail);
+    const listResult = GetCards(rd.PlayerCards, rd.BankerCards);
+    console.log(`##### listResult`);
+    console.log(listResult);
 
     /** Array
      * serverId : INT(11)
