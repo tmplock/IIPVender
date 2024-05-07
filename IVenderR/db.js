@@ -1,26 +1,26 @@
 const Sequelize = require('sequelize');
 
 //  Production
-const sequelize = new Sequelize({
-    host: 'db-mysql-sgp1-27012-do-user-11246819-0.b.db.ondigitalocean.com',
-    database: 'iip',
-    username: 'iiplive',
-    password: 'oLOHJkiQACPGuAgj',
-    dialect: 'mysql',
-    port:25060,
-    timezone:'Asia/Seoul'
-});
-
-//  Staging
 // const sequelize = new Sequelize({
-//     host: 'db-mysql-sgp1-62759-do-user-11246819-0.c.db.ondigitalocean.com',
+//     host: 'db-mysql-sgp1-27012-do-user-11246819-0.b.db.ondigitalocean.com',
 //     database: 'iip',
-//     username: 'doadmin',
-//     password: 'AVNS_FYsbSxfV0ADzDF4IiRJ',
+//     username: 'iiplive',
+//     password: 'oLOHJkiQACPGuAgj',
 //     dialect: 'mysql',
 //     port:25060,
-//     timezone:"+09:00"
+//     timezone:'Asia/Seoul'
 // });
+
+//  Staging
+const sequelize = new Sequelize({
+    host: 'db-mysql-sgp1-62759-do-user-11246819-0.c.db.ondigitalocean.com',
+    database: 'iip',
+    username: 'doadmin',
+    password: 'AVNS_FYsbSxfV0ADzDF4IiRJ',
+    dialect: 'mysql',
+    port:25060,
+    timezone:"+09:00"
+});
 
 const db = {};
 db.Sequelize = Sequelize;
