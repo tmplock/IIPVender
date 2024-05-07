@@ -873,7 +873,7 @@ let GetTarget = (objectBet, objectWin) => {
 
     for ( let i in list )
     {
-        listFinal.push({iGameCode:list[i].iGameCode, iTarget:list[i].iTarget, iBet:list[i].iBet, iWin:list[i].iWin});
+        listFinal.push({C:list[i].iGameCode, T:list[i].iTarget, B:list[i].iBet, W:list[i].iWin});
     }
 
     return listFinal;
