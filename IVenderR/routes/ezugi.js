@@ -831,36 +831,36 @@ let GetTarget = (objectBet, objectWin) => {
         switch ( listBetKey[i] )
         {
             case 'PlayerBet':
-                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.Player, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:0, iTarget:IEnum.EBetType.Player, iBet:listBetValue[i], iWin:0};
                 break;
             case 'BankerBet':
-                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.Banker, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:0, iTarget:IEnum.EBetType.Banker, iBet:listBetValue[i], iWin:0};
                 break;
             case 'TieBet':
-                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.Tie, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:0, iTarget:IEnum.EBetType.Tie, iBet:listBetValue[i], iWin:0};
                 break;
             case 'PlayerPair':
-                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.PlayerPair, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:0, iTarget:IEnum.EBetType.PlayerPair, iBet:listBetValue[i], iWin:0};
                 break;
             case 'BankerPair':
-                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.BankerPair, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:0, iTarget:IEnum.EBetType.BankerPair, iBet:listBetValue[i], iWin:0};
                 break;
 
             case 'PlayerOver':
-                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.PlayerOver, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:100, iTarget:IEnum.EBetType.PlayerOver, iBet:listBetValue[i], iWin:0};
                 break;
             case 'PlayerUnder':
-                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.PlayerUnder, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:100, iTarget:IEnum.EBetType.PlayerUnder, iBet:listBetValue[i], iWin:0};
                 break;
             case 'BankerOver':
-                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.BankerOver, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:100, iTarget:IEnum.EBetType.BankerOver, iBet:listBetValue[i], iWin:0};
                 break;
             case 'BankerUnder':
-                list[listBetKey[i]] = {iGameCode:100, iTarget:Enum.EBetType.BankerUnder, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:100, iTarget:IEnum.EBetType.BankerUnder, iBet:listBetValue[i], iWin:0};
                 break;
 
             default:
-                list[listBetKey[i]] = {iGameCode:0, iTarget:Enum.EBetType.LiveCasino, iBet:listBetValue[i], iWin:0};
+                list[listBetKey[i]] = {iGameCode:0, iTarget:IEnum.EBetType.LiveCasino, iBet:listBetValue[i], iWin:0};
         }
     }
 
