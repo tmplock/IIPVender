@@ -373,9 +373,17 @@ router.post('/changebalance', async (req, res) => {
     {
         case 'bet':
             {
-                res.status(200).json({});
+                //res.status(200).json({});
                 //const bet = await IHelper.ProcessBet(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, -req.body.amount, 0, '', transaction.id, eGameCode);
                 const bet = await IHelper.ProcessBet2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, -req.body.amount, 0, '', transaction.id, eGameCode);
+                if ( bet != null )
+                {
+                    res.status(200).json({});
+                }
+                else
+                {
+                    res.status(500).json({});
+                }
                 //AddDB(bet);
                 //await AddDB(bet);
                 return;
