@@ -90,7 +90,8 @@ router.post('/', async (req, res) => {
     }
     else if ( req.body.strVender == IEnum.EVender.LIVE_ALLBET )
         {
-            const objectData = await IGetHonorLinkURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "AllBet", req.body.strReturnURL);
+            //const objectData = await IGetHonorLinkURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "AllBet", req.body.strReturnURL);
+            const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "AllBet", req.body.strReturnURL);
             console.log(objectData);
             return res.send(objectData);
         }
@@ -245,6 +246,8 @@ router.post('/slotlist', async (req, res) => {
             strGameKey = 'Skywind Slot';
         if ( req.body.strVender == IEnum.EVender.SM_HABANERO )
             strGameKey = 'Habanero';
+        if ( req.body.strVender == IEnum.EVender.LIVE_ALLBET )
+            strGameKey = 'AllBet';
     
         {
             const objectData = await IGetHonorLinkSlotList(strGameKey);
