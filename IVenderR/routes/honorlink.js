@@ -114,7 +114,7 @@ let GetGameURL = async (strAgentCode, strID, strSecretCode, strGameKey, strRetur
             console.log(`################################################### strAgentID : ${strAgentID}`);
 
             const res_data = await RequestGameList(strGameKey);
-            console.log(res_data);
+            //console.log(res_data);
 
             const res_lobby = await RequestLobbyList(strGameKey);
             if (res_lobby == null) {
