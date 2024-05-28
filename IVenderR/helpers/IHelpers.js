@@ -536,7 +536,7 @@ exports.AxiosBet = async (cAddress, strAgentCode, strID, eGameType, strVender, s
             strTableID:strTableID,
             strRoundID:strRoundID, 
             strTransactionID:strTransactionID, 
-            iBetAccount:strTarget, 
+            strTarget:strTarget, 
             strAmount:strAmount, 
             strDesc:strDesc
         };

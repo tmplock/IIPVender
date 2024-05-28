@@ -916,9 +916,13 @@ router.post('/credit', async (req, res) => {
     const listDetail = GetTarget(rd.BetsList, rd.WinningBets);
     console.log(`##### listDetail`);
     console.log(listDetail);
+    const strDetail = JSON.stringify(listDetail);
+    console.log(strDetail);
     const listResult = GetCards(rd.PlayerCards, rd.BankerCards);
     console.log(`##### listResult`);
     console.log(listResult);
+    const strResult = JSON.stringify(listResult);
+    console.log(strResult);
 
     /** Array
      * serverId : INT(11)
@@ -1028,7 +1032,7 @@ router.post('/credit', async (req, res) => {
     else if (returnReason == 0)
     {
         //const processwin = await IHelper.ProcessWin(req.body.uid, eType, IAccount.cVender, req.body.gameId, req.body.roundId, req.body.creditAmount, 0, req.body.debitTransactionId, req.body.transactionId, 0);
-        const processwin = await IHelper.ProcessWin2(req.body.uid, eType, IAccount.cVender, req.body.gameId, req.body.tableId, req.body.roundId, req.body.creditAmount, 0, req.body.tableId, req.body.transactionId, 0);
+        const processwin = await IHelper.ProcessWin2(req.body.uid, eType, IAccount.cVender, req.body.gameId, req.body.tableId, req.body.roundId, req.body.creditAmount, strDetail, strResult, req.body.transactionId, 0);
 
         if(processwin == null)
         {
