@@ -725,7 +725,8 @@ router.post('/rollback', async (req, res) => {
     }
     balance = parseFloat(user.iCash);
 
-    const bet = await IHelper.GetBet(IAccount.cVender, req.body.transactionId);
+    //const bet = await IHelper.GetBet(IAccount.cVender, req.body.transactionId);
+    const bet = await IHelper.FindDB(req.body.transactionId);
     if (bet != null) {
         const fBetAmount = parseFloat(bet.strAmount);
 
