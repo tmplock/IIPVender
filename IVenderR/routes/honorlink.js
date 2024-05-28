@@ -376,7 +376,7 @@ router.post('/changebalance', async (req, res) => {
                 //res.status(200).json({});
                 //const bet = await IHelper.ProcessBet(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, -req.body.amount, 0, '', transaction.id, eGameCode);
                 //const bet = await IHelper.ProcessBet2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, -req.body.amount, 0, '', transaction.id, eGameCode);
-                const bet = await IHelper.ProcessBet2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, -req.body.amount, 0, '', transaction.title, eGameCode);
+                const bet = await IHelper.ProcessBet2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.title, transaction.details.game.round, -req.body.amount, 0, '', transaction.id, eGameCode);
                 if ( bet != null )
                 {
                     res.status(200).json({});
@@ -394,7 +394,7 @@ router.post('/changebalance', async (req, res) => {
                 res.status(200).json({});
                 //const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
                 //const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, req.body.amount, 0, '', transaction.id, eGameCode);
-                const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.title, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
                 //AddDB(win);
                 //await AddDB(win);
                 return;
