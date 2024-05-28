@@ -911,19 +911,25 @@ router.post('/credit', async (req, res) => {
     console.log(`##################################################/ezugi/credit`);
     console.log(req.body);
 
-    const rd = JSON.parse(req.body.gameDataString);
-    console.log(rd);
+    let strResult = '';
+    let strDetail = '';
+    if ( req.body.gameDataString != undefined && req.body.gameDataString != '' )
+    {
+        const rd = JSON.parse(req.body.gameDataString);
+        console.log(rd);
+    
+        const listDetail = GetTarget(rd.BetsList, rd.WinningBets);
+        console.log(`##### listDetail`);
+        console.log(listDetail);
+        const listResult = GetCards(rd.PlayerCards, rd.BankerCards);
+        console.log(`##### listResult`);
+        console.log(listResult);
 
-    const listDetail = GetTarget(rd.BetsList, rd.WinningBets);
-    console.log(`##### listDetail`);
-    console.log(listDetail);
-    const strDetail = JSON.stringify(listDetail);
-    console.log(strDetail);
-    const listResult = GetCards(rd.PlayerCards, rd.BankerCards);
-    console.log(`##### listResult`);
-    console.log(listResult);
-    const strResult = JSON.stringify(listResult);
-    console.log(strResult);
+        strDetail = JSON.stringify(listDetail);
+        console.log(strDetail);
+        strResult = JSON.stringify(listResult);
+        console.log(strResult);
+    }
 
     /** Array
      * serverId : INT(11)
