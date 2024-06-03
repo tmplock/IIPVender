@@ -204,7 +204,7 @@ router.post('/', async (req, res) => {
     }
     else if ( req.body.strVender == IEnum.EVender.SM_BIGTIMEGAMING )
     {
-        const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "BigTimeGaming", req.body.strGameKey, req.body.strReturnURL);
+        const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "Skywind Slot", req.body.strGameKey, req.body.strReturnURL);
 
         console.log(objectData);
         return res.send(objectData);
