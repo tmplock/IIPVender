@@ -204,7 +204,7 @@ router.post('/', async (req, res) => {
     }
     else if ( req.body.strVender == IEnum.EVender.SM_BIGTIMEGAMING )
     {
-        const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "Skywind Slot", req.body.strGameKey, req.body.strReturnURL);
+        const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "BigTimeGaming", req.body.strGameKey, req.body.strReturnURL);
 
         console.log(objectData);
         return res.send(objectData);
@@ -254,6 +254,8 @@ router.post('/slotlist', async (req, res) => {
             strGameKey = 'Skywind Slot';
         if ( req.body.strVender == IEnum.EVender.SM_HABANERO )
             strGameKey = 'Habanero';
+        if ( req.body.strVender == IEnum.EVender.SM_BIGTIMEGAMING )
+            strGameKey = 'BigTimeGaming';
         if ( req.body.strVender == IEnum.EVender.LIVE_ALLBET )
             strGameKey = 'AllBet';
     
