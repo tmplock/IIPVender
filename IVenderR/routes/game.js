@@ -90,9 +90,9 @@ router.post('/', async (req, res) => {
     }
     else if ( req.body.strVender == IEnum.EVender.LIVE_ALLBET )
         {
-            const objectData = await IGetHonorLinkURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "allBet_602", req.body.strReturnURL);
+            //const objectData = await IGetHonorLinkURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "AllBet", req.body.strReturnURL);
             // const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, "AllBet", req.body.strReturnURL);
-            //const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, 'AllBet', req.body.strGameKey, req.body.strReturnURL);
+            const objectData = await IGetHonorLinkSlotURL(req.body.strAgentCode, req.body.strID, req.body.strSecretCode, 'AllBet', req.body.strGameKey, req.body.strReturnURL);
             console.log(objectData);
             return res.send(objectData);
         }
