@@ -392,9 +392,14 @@ router.post('/changebalance', async (req, res) => {
         case 'win':
             {
                 res.status(200).json({});
+
+                if ( parseInt(req.body.amount) > 0 )
+                {
+                    const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.title, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                }
                 //const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
                 //const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.id, transaction.details.game.round, req.body.amount, 0, '', transaction.id, eGameCode);
-                const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.title, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
+                
                 //AddDB(win);
                 //await AddDB(win);
                 return;
