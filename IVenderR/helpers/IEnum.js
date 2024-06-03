@@ -107,7 +107,12 @@ const EnumVender = Object.freeze({
     "SM_CQ9":"SM_CQ9",
     "SM_ASIASLOT":"SM_ASIASLOT",
     "SM_BETSOFT":"SM_BETSOFT",
-    "SM_BIGTIMEGAMING":"SM_BIGTIMEGAMING"
+
+    "SM_BIGTIMEGAMING":"SM_BIGTIMEGAMING",
+    "SM_7MOJOS":"SM_7MOJOS",
+    "SM_PLATIPUS":"SM_PLATIPUS",
+    "SM_MANCALA":"SM_MANCALA",
+    "SM_RSG":"SM_RSG",
 
 });
 exports.EVender = EnumVender;
