@@ -99,30 +99,30 @@ API 白名單 API Whitelist*	174.138.23.187
 // };
 
 //  PRODUCTION
-// let IAccount = 
-// {
-//     cVender: 'CQ9',
-//     cCurrency: 'KRW',
-//     cAPIURL : 'https://apii.cqgame.cc/',
-//     cAPIToken : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NTUxZmY4YTZlOTFjYTdkZTgxMWQwYWYiLCJhY2NvdW50IjoiaWlwZ2FtZSIsIm93bmVyIjoiNjU1MWZmOGE2ZTkxY2E3ZGU4MTFkMGFmIiwicGFyZW50Ijoic2VsZiIsImN1cnJlbmN5IjoiS1JXIiwiYnJhbmQiOiJtb3RpdmF0aW9uIiwianRpIjoiNjgyMTU5ODcxIiwiaWF0IjoxNjk5ODcyNjUwLCJpc3MiOiJDeXByZXNzIiwic3ViIjoiU1NUb2tlbiJ9.SI3LXRK74d3p2DNOK024mzIeVQBNZ0tgwMAPRO-_hIM',
-//     cBOURL: 'https://booi.cqgame.cc',
-//     cBOAddress : 'https://booi.cqgame.cc/',
-//     cBOID : 'iipgame',
-//     cBOPassword : 'kissmeplz37'
-// };
-
-//  STAGING
 let IAccount = 
 {
     cVender: 'CQ9',
     cCurrency: 'KRW',
-    cAPIURL : 'https://api.cqgame.games/',
-    cAPIToken : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NjAzN2EzYTc2ZWViMzc2ZDNmNjE3NWIiLCJhY2NvdW50IjoiVU9fZGV2X3N3Iiwib3duZXIiOiI2NjAzN2EzYTc2ZWViMzc2ZDNmNjE3NWIiLCJwYXJlbnQiOiJzZWxmIiwiY3VycmVuY3kiOiJLUlciLCJicmFuZCI6ImNxOSIsImp0aSI6Ijg4OTExOTE1NCIsImlhdCI6MTcxMTUwMzkzMCwiaXNzIjoiQ3lwcmVzcyIsInN1YiI6IlNTVG9rZW4ifQ.eZ3P8mwVPdeEAoXfH98_rnZWEdYcAjwp_IMOgiOA5CI',
-    cBOURL: 'https://bo.cqgame.games',
-    cBOAddress : 'https://bo.cqgame.games',
-    cBOID : 'UO_dev_sw',
-    cBOPassword : 'qwer1234'
+    cAPIURL : 'https://apii.cqgame.cc/',
+    cAPIToken : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NTUxZmY4YTZlOTFjYTdkZTgxMWQwYWYiLCJhY2NvdW50IjoiaWlwZ2FtZSIsIm93bmVyIjoiNjU1MWZmOGE2ZTkxY2E3ZGU4MTFkMGFmIiwicGFyZW50Ijoic2VsZiIsImN1cnJlbmN5IjoiS1JXIiwiYnJhbmQiOiJtb3RpdmF0aW9uIiwianRpIjoiNjgyMTU5ODcxIiwiaWF0IjoxNjk5ODcyNjUwLCJpc3MiOiJDeXByZXNzIiwic3ViIjoiU1NUb2tlbiJ9.SI3LXRK74d3p2DNOK024mzIeVQBNZ0tgwMAPRO-_hIM',
+    cBOURL: 'https://booi.cqgame.cc',
+    cBOAddress : 'https://booi.cqgame.cc/',
+    cBOID : 'iipgame',
+    cBOPassword : 'kissmeplz37'
 };
+
+// //  STAGING
+// let IAccount = 
+// {
+//     cVender: 'CQ9',
+//     cCurrency: 'KRW',
+//     cAPIURL : 'https://api.cqgame.games/',
+//     cAPIToken : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI2NjAzN2EzYTc2ZWViMzc2ZDNmNjE3NWIiLCJhY2NvdW50IjoiVU9fZGV2X3N3Iiwib3duZXIiOiI2NjAzN2EzYTc2ZWViMzc2ZDNmNjE3NWIiLCJwYXJlbnQiOiJzZWxmIiwiY3VycmVuY3kiOiJLUlciLCJicmFuZCI6ImNxOSIsImp0aSI6Ijg4OTExOTE1NCIsImlhdCI6MTcxMTUwMzkzMCwiaXNzIjoiQ3lwcmVzcyIsInN1YiI6IlNTVG9rZW4ifQ.eZ3P8mwVPdeEAoXfH98_rnZWEdYcAjwp_IMOgiOA5CI',
+//     cBOURL: 'https://bo.cqgame.games',
+//     cBOAddress : 'https://bo.cqgame.games',
+//     cBOID : 'UO_dev_sw',
+//     cBOPassword : 'qwer1234'
+// };
 
 const EErrorCode = Object.freeze({
     "eSuccess":0, 
