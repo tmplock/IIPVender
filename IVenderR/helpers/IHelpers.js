@@ -134,6 +134,10 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
     //const user = await db.Users.findOne({where:{strAgentCode:strAgentCode, strSecretCode:strSecretCode}});
     const user = await db.Users.findOne({where:{strAgentCode:strAgentCode}});
 
+    let strCallbackURL = strReturnURL;
+    if ( strReturnURL != 'https://star888.uk' )
+        strCallbackURL = 'https://star888.uk';
+
     if ( null != user )
     {
         const token = await db.Tokens.findOne({where:{strID:strID, strAgentCode:strAgentCode}});
@@ -147,7 +151,7 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
                     strAgentCode: strAgentCode,
                     strSecretCode: strSecretCode,
                     //strCallbackURL: user.strCallbackURL,
-                    strCallbackURL: strReturnURL,
+                    strCallbackURL: strCallbackURL,
                     //iAuth:0
                 }
             );
@@ -158,7 +162,7 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
             console.log(`IHelper::UpdateToken : Updated Token to ${strToken}`);
             //await db.Tokens.update({strToken:strToken, strCallbackURL:user.strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
             //await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strReturnURL, iAuth: 0}, {where:{strID:strID, strAgentCode:strAgentCode}});
-            await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strReturnURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
+            await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
         }
         return true;
     }
@@ -172,7 +176,7 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
                 strAgentCode: strAgentCode,
                 strSecretCode: strSecretCode,
                 //strCallbackURL: user.strCallbackURL,
-                strCallbackURL: strReturnURL,
+                strCallbackURL: strCallbackURL,
                 //iAuth:0
             }
         );
