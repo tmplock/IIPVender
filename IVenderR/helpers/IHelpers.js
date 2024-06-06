@@ -135,8 +135,11 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
     const user = await db.Users.findOne({where:{strAgentCode:strAgentCode}});
 
     let strCallbackURL = strReturnURL;
-    if ( strReturnURL != 'https://star888.uk/game' )
+    if ( strReturnURL != 'https://star888.uk/game' && strReturnURL != 'http://star888.uk/game' )
+    {
         strCallbackURL = 'https://star888.uk/game';
+    }
+        
 
     if ( null != user )
     {
