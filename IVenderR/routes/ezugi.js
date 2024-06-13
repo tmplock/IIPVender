@@ -31,41 +31,41 @@ router.use(express.urlencoded({ extended: false }));
 	Let me know when you wrote it down so I can delete it from this conversation.
 */
 // //  ##### Staging
-let IAccount = 
-{
-    cVender: 'EZUGI',
-    cCurrency: 'KRW',
-    
-    cAPIURL : 'https://play.thefunfeed.com/auth/',
-    cGameURL : 'https://play.thefunfeed.com/auth',
-    // cAPIURL : 'https://playint.tableslive.com/auth',
-    // cGameURL : 'https://playint.tableslive.com/auth',
-    cOperatorID : 10752001,
-    cSecretCode : 'rnkQegcyIt_Jh9zxYOWqrFBCKeoVRKeYywXUnc5gS8I=',
-    cLanguage: 'kr',
-    cIP:'',
-    SignatureHashKey: '281e37ce-a8a2-4e28-8854-57fc511e2f16',
-    cAPIUSER : 'IIPUser',
-    cAPIID : '10752001-a4e1e2c9',
-    cAPIAccess : '28c65b947b57b4ca405d3aea2152fce02a5542679049646770d0f09ae774939b'
-};
-
-//  ##### Production
 // let IAccount = 
 // {
 //     cVender: 'EZUGI',
 //     cCurrency: 'KRW',
-//     cAPIURL : 'https://play.livetables.io/auth/',
-//     cGameURL : 'https://play.livetables.io/auth/',
+    
+//     cAPIURL : 'https://play.thefunfeed.com/auth/',
+//     cGameURL : 'https://play.thefunfeed.com/auth',
+//     // cAPIURL : 'https://playint.tableslive.com/auth',
+//     // cGameURL : 'https://playint.tableslive.com/auth',
 //     cOperatorID : 10752001,
 //     cSecretCode : 'rnkQegcyIt_Jh9zxYOWqrFBCKeoVRKeYywXUnc5gS8I=',
 //     cLanguage: 'kr',
 //     cIP:'',
-//     SignatureHashKey: 'b328ca06-0d15-44d9-9fa7-be94c9b592ad',
+//     SignatureHashKey: '281e37ce-a8a2-4e28-8854-57fc511e2f16',
 //     cAPIUSER : 'IIPUser',
 //     cAPIID : '10752001-a4e1e2c9',
 //     cAPIAccess : '28c65b947b57b4ca405d3aea2152fce02a5542679049646770d0f09ae774939b'
 // };
+
+//  ##### Production
+let IAccount = 
+{
+    cVender: 'EZUGI',
+    cCurrency: 'KRW',
+    cAPIURL : 'https://play.livetables.io/auth/',
+    cGameURL : 'https://play.livetables.io/auth/',
+    cOperatorID : 10752001,
+    cSecretCode : 'rnkQegcyIt_Jh9zxYOWqrFBCKeoVRKeYywXUnc5gS8I=',
+    cLanguage: 'kr',
+    cIP:'',
+    SignatureHashKey: 'b328ca06-0d15-44d9-9fa7-be94c9b592ad',
+    cAPIUSER : 'IIPUser',
+    cAPIID : '10752001-a4e1e2c9',
+    cAPIAccess : '28c65b947b57b4ca405d3aea2152fce02a5542679049646770d0f09ae774939b'
+};
 
 let GetErrorCode = (eCode) => {
 
