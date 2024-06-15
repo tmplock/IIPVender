@@ -166,6 +166,8 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
             //await db.Tokens.update({strToken:strToken, strCallbackURL:user.strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
             //await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strReturnURL, iAuth: 0}, {where:{strID:strID, strAgentCode:strAgentCode}});
             await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
+
+            console.log(`############################################################################################## UpdateToken : ${strReturnURL}, ${strCallbackURL}`);
         }
         return true;
     }
@@ -202,34 +204,6 @@ let GetUserFromTokenAtTokenDB = async (strToken) => {
     }
     return null;
 }
-
-// let SetTokenIAuth = async (strAgentID, ezugiToken) => {
-
-//     console.log(`IHelper::SetTokenIAuth : ${strAgentID} / ${ezugiToken}`);
-
-//     const token = await GetUserFromAgentIDAtTokenDB(strAgentID);
-
-//     if ( token != null )
-//     {
-//         let objectData = {strID:token.strID, ezugiToken:ezugiToken};
-//         // const cAddress = 'http://localhost:3010/game/authenticate';
-//         const cAddress = `${token.strCallbackURL}/ezugitoken`;
-//         let res_axios = await RequestAxios(cAddress, objectData);
-//         console.log(res_axios);
-    
-//         if ( res_axios.result == 'OK' )
-//         {
-//             await db.Tokens.update({iAuth: 1, ezugiToken: ezugiToken}, {where:{strID:strAgentID}});
-            
-//             //return {strID:res_axios.data.strID, strNickname:res_axios.data.strNickname, iCash:res_axios.data.iCash, iSessionID:res_axios.iSessionID, strAgentCode:token.strAgentCode, strIP: res_axios.data.strIP, iAuth: token.iAuth};
-//         }
-//     }
-
-//     return null;
-
-    
-// }
-// exports.SetTokenIAuth = SetTokenIAuth;
 
 exports.GetUserFromTokenAtTokenDB = GetUserFromTokenAtTokenDB;
 
