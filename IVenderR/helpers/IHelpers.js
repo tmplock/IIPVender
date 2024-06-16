@@ -783,7 +783,8 @@ exports.GetUser = async (strAgentID) => {
         if ( token != null )
         {
             //user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken, ezugiToken:token.ezugiToken};
-            user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken};
+            //user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken};
+            user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:'https://tlrp888.uk', strToken:token.strToken};
             AddUser(user);
         }
         else
