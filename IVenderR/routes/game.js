@@ -18,6 +18,8 @@ const IGetHonorLinkSlotURL = require('./honorlink').GetSlotGameURL;
 const IGetHonorLinkSlotList = require('./honorlink').GetSlotList;
 const IGetCQ9URL = require('./cq9').GetGameURL;
 
+const IGetTheNutURL = require('./thenut').GetGameURL;
+
 router.post('/', async (req, res) => {
 
     console.log(`##################################################/game`);

@@ -49,6 +49,7 @@ app.use('/game', require('./routes/game'));
 // app.use('/habanero', require('./routes/habanero').router);
 app.use('/honorlink', require('./routes/honorlink').router);
 app.use('/cq9', require('./routes/cq9').router);
+app.use('/thenut', require('./routes/thenut').router);
 
 
 app.get('/', (req, res) => {
