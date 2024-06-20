@@ -7,7 +7,7 @@ const { default: axios } = require('axios');
 
 const db = require('../db');
 const redis = require('../redis');
-
+                        //http://165.22.102.70:3070/game
 const strCallbackURL = 'http://165.22.102.70:3070/game';
 
 exports.AddDB = async (objectDB) => {
