@@ -25,11 +25,12 @@ router.post('/', async (req, res) => {
     console.log(`##################################################/game`);
     console.log(req.body);
     /*
+        strID,
+        strAgentCode,
+        strSecretCode,
         strVender,
         strGameKey,
-        strAgentCode,
-        strID,
-        strSecretCode,
+        strReturnURL,
     */
     if ( req.body.strVender == undefined || req.body.strGameKey == undefined || req.body.strAgentCode == undefined || req.body.strID == undefined || req.body.strSecretCode == undefined )
     {

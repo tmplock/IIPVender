@@ -8,7 +8,7 @@ const { default: axios } = require('axios');
 const db = require('../db');
 const redis = require('../redis');
                         //http://165.22.102.70:3070/game
-const strCallbackURL = 'http://165.22.102.70:3070/game';
+//const strCallbackURL = 'http://165.22.102.70:3070/game';
 
 exports.AddDB = async (objectDB) => {
 
@@ -166,7 +166,7 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
         {
             console.log(`IHelper::UpdateToken : Updated Token to ${strToken}`);
             //await db.Tokens.update({strToken:strToken, strCallbackURL:user.strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
-            await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strReturnURL, iAuth: 0}, {where:{strID:strID, strAgentCode:strAgentCode}});
+            await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:user.strCallbackURL, iAuth: 0}, {where:{strID:strID, strAgentCode:strAgentCode}});
             //await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
 
             //console.log(`############################################################################################## UpdateToken : ${strReturnURL}, ${strCallbackURL}`);
@@ -274,8 +274,8 @@ exports.GetUserFromLaunchToken = async (strVender, strLaunchToken) => {
         const objectID = GetIDFromAgentID(token.strID);
         //let objectData = {strVender:strVender, strToken:token.strToken};
         let objectData = {strVender:strVender, strID:objectID.strID};
-        //const cAddress = `${token.strCallbackURL}/authenticate`;
-        const cAddress = `${strCallbackURL}/authenticate`;
+        const cAddress = `${token.strCallbackURL}/authenticate`;
+        //const cAddress = `${strCallbackURL}/authenticate`;
         let res_axios = await RequestAxios(cAddress, objectData);
     
         if ( res_axios.result == 'OK' )
@@ -299,8 +299,8 @@ exports.GetUserFromToken = async (strVender, strToken) => {
     {
         let objectData = {strVender:strVender, strToken:strToken};
         // const cAddress = 'http://localhost:3010/game/authenticate';
-        //const cAddress = `${token.strCallbackURL}/authenticate`;
-        const cAddress = `${strCallbackURL}/authenticate`;
+        const cAddress = `${token.strCallbackURL}/authenticate`;
+        //const cAddress = `${strCallbackURL}/authenticate`;
         let res_axios = await RequestAxios(cAddress, objectData);
         console.log(res_axios);
     
@@ -327,31 +327,6 @@ exports.GetUserFromToken = async (strVender, strToken) => {
     return null;
 }
 
-//exports.GetUserFromID = async (strVender, strID) => {
-exports.GetUserFromID = async (strVender, strAgentID) => {
-
-    const token = await GetUserFromAgentIDAtTokenDB(strAgentID);
-
-    console.log(`GetUserFromID`);
-    console.log(token);
-
-    if ( null != token )
-    {
-        let objectData = {strVender:strVender, strID:token.strID};
-        //const cAddress = 'http://165.22.102.70:3010/game/authenticate';
-        ///const cAddress = `${token.strCallbackURL}/authenticate`;
-        const cAddress = `${strCallbackURL}/authenticate`;
-        let res_axios = await RequestAxios(cAddress, objectData);
-        console.log(res_axios);
-    
-        if ( res_axios.result == 'OK' )
-        {
-            //return {strID:res_axios.data.strID, strNickname:res_axios.data.strNickname, iCash:res_axios.data.iCash, iSessionID:res_axios.iSessionID, strAgentCode:token.strAgentCode, strToken:token.strToken, ezugiToken:token.ezugiToken};
-            return {strID:res_axios.data.strID, strNickname:res_axios.data.strNickname, iCash:res_axios.data.iCash, iSessionID:res_axios.iSessionID, strAgentCode:token.strAgentCode, strToken:token.strToken};
-        }
-    }
-    return null;
-}
 
 exports.CheckUserFromID = async (strVender, strAgentID) => {
 
@@ -381,8 +356,8 @@ exports.GetUserFromTransactionID = async (strVender, strTransactionID) => {
             //const objectID = GetIDFromAgentID(strAgentID);
             let objectData = {strVender:strVender, strID:ret.strID};
             // const cAddress = 'http://localhost:3010/game/authenticate';
-            //const cAddress = `${token.strCallbackURL}/authenticate`;
-            const cAddress = `${strCallbackURL}/authenticate`;
+            const cAddress = `${token.strCallbackURL}/authenticate`;
+            //const cAddress = `${strCallbackURL}/authenticate`;
             let res_axios = await RequestAxios(cAddress, objectData);
             console.log(res_axios);
         
@@ -791,8 +766,8 @@ exports.GetUser = async (strAgentID) => {
         if ( token != null )
         {
             //user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken, ezugiToken:token.ezugiToken};
-            //user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken};
-            user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:'https://tlrp888.uk/game', strToken:token.strToken};
+            user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken};
+            //user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:'https://tlrp888.uk/game', strToken:token.strToken};
             AddUser(user);
         }
         else
@@ -811,8 +786,8 @@ exports.ProcessBet2 = async (strAgentID, eGameType, strVender, strGameID, strTab
     console.log(token);
     if ( null != token )
     {
-        //const cAddress = `${token.strCallbackURL}/bet`;
-        const cAddress = `${strCallbackURL}/bet`;
+        const cAddress = `${token.strCallbackURL}/bet`;
+        //const cAddress = `${strCallbackURL}/bet`;
         const req = await this.AxiosBet(cAddress, token.strAgentCode, token.strID, eGameType, strVender, strGameID, strTableID, strRoundID, strAmount, strTarget, strDesc, strTransactionID, iGameCode);
         console.log(`##### ProcessBet : ${req.result}`);
         if ( req != null )
@@ -850,8 +825,8 @@ exports.ProcessWin2 = async (strAgentID, eGameType, strVender, strGameID, strTab
 
     if ( null != token )
     {
-        //const cAddress = `${token.strCallbackURL}/win`;
-        const cAddress = `${strCallbackURL}/win`;
+        const cAddress = `${token.strCallbackURL}/win`;
+        //const cAddress = `${strCallbackURL}/win`;
         const req = await this.AxiosBet(cAddress, token.strAgentCode, token.strID, eGameType, strVender, strGameID, strTableID, strRoundID, strAmount, strTarget, strDesc, strTransactionID, iGameCode);
         if ( req != null )
         {
@@ -889,8 +864,8 @@ exports.ProcessWin2 = async (strAgentID, eGameType, strVender, strGameID, strTab
         const transaction = await this.FindDB(strTransactionID);
         if (transaction != null )
         {
-            //const cAddress = `${token.strCallbackURL}/cancel`;
-            const cAddress = `${strCallbackURL}/cancel`;
+            const cAddress = `${token.strCallbackURL}/cancel`;
+            //const cAddress = `${strCallbackURL}/cancel`;
 
             const req = await this.AxiosCancel(cAddress, token.strID, transaction.strVender, transaction.strTransactionID, transaction.strGameID, transaction.strRoundID, transaction.eType);
             if ( req != null )
@@ -926,6 +901,31 @@ exports.ProcessException2 = async (strAgentID, eGameType, strVender, strGameID, 
     return null;
 }
 
+//exports.GetUserFromID = async (strVender, strID) => {
+exports.GetUserFromID = async (strVender, strAgentID) => {
+
+    const token = await GetUserFromAgentIDAtTokenDB(strAgentID);
+
+    console.log(`GetUserFromID`);
+    console.log(token);
+
+    if ( null != token )
+    {
+        let objectData = {strVender:strVender, strID:token.strID};
+        //const cAddress = 'http://165.22.102.70:3010/game/authenticate';
+        const cAddress = `${token.strCallbackURL}/authenticate`;
+        //const cAddress = `${strCallbackURL}/authenticate`;
+        let res_axios = await RequestAxios(cAddress, objectData);
+        console.log(res_axios);
+    
+        if ( res_axios.result == 'OK' )
+        {
+            //return {strID:res_axios.data.strID, strNickname:res_axios.data.strNickname, iCash:res_axios.data.iCash, iSessionID:res_axios.iSessionID, strAgentCode:token.strAgentCode, strToken:token.strToken, ezugiToken:token.ezugiToken};
+            return {strID:res_axios.data.strID, strNickname:res_axios.data.strNickname, iCash:res_axios.data.iCash, iSessionID:res_axios.iSessionID, strAgentCode:token.strAgentCode, strToken:token.strToken};
+        }
+    }
+    return null;
+}
 
 exports.GetUserFromID2 = async (strVender, strAgentID) => {
 
@@ -939,8 +939,8 @@ exports.GetUserFromID2 = async (strVender, strAgentID) => {
     {
         let objectData = {strVender:strVender, strID:token.strID};
         //const cAddress = 'http://165.22.102.70:3010/game/authenticate';
-        //const cAddress = `${token.strCallbackURL}/authenticate`;
-        const cAddress = `${strCallbackURL}/authenticate`;
+        const cAddress = `${token.strCallbackURL}/authenticate`;
+        //const cAddress = `${strCallbackURL}/authenticate`;
         let res_axios = await RequestAxios(cAddress, objectData);
         console.log(res_axios);
     
