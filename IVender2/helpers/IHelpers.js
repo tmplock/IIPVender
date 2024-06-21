@@ -768,7 +768,7 @@ exports.GetUser = async (strAgentID) => {
             //user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken, ezugiToken:token.ezugiToken};
             user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:token.strCallbackURL, strToken:token.strToken};
             //user = {strAgentID:strAgentID, strAgentCode:token.strAgentCode, strID:token.strID, strCallbackURL:'https://tlrp888.uk/game', strToken:token.strToken};
-            AddUser(user);const win = await IHelper.ProcessWin2(req.body.username, cType, IAccount.cVender, transaction.details.game.vendor, transaction.details.game.title, transaction.details.game.round, req.body.amount, 0, '', transaction.referer_id, eGameCode);
+            AddUser(user);
         }
         else
         {
