@@ -165,7 +165,7 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
             console.log(`IHelper::UpdateToken : Updated Token to ${strToken}`);
             //await db.Tokens.update({strToken:strToken, strCallbackURL:user.strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
             //await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strReturnURL, iAuth: 0}, {where:{strID:strID, strAgentCode:strAgentCode}});
-            await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
+            await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:user.strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
 
             console.log(`############################################################################################## UpdateToken : ${strReturnURL}, ${strCallbackURL}`);
         }
