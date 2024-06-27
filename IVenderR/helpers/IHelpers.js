@@ -167,7 +167,7 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
             //await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:strReturnURL, iAuth: 0}, {where:{strID:strID, strAgentCode:strAgentCode}});
             await db.Tokens.update({strToken:strToken, strLaunchToken:strLaunchToken, strCallbackURL:user.strCallbackURL}, {where:{strID:strID, strAgentCode:strAgentCode}});
 
-            console.log(`############################################################################################## UpdateToken : ${strReturnURL}, ${strCallbackURL}`);
+            console.log(`############################################################################################## UpdateToken : ${strReturnURL}, ${user.strCallbackURL}`);
         }
         return true;
     }
