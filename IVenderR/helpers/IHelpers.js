@@ -928,7 +928,13 @@ exports.GetUserFromID2 = async (strVender, strAgentID) => {
     {
         let objectData = {strVender:strVender, strID:token.strID};
         //const cAddress = 'http://165.22.102.70:3010/game/authenticate';
+
+
         const cAddress = `${token.strCallbackURL}/authenticate`;
+
+
+        console.log(`############################################################################################# Axios Address : ${cAddress}`);
+
         let res_axios = await RequestAxios(cAddress, objectData);
         console.log(res_axios);
     
