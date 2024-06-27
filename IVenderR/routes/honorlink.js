@@ -22,9 +22,9 @@ let IAccount =
     cAPIURL : 'https://api.honorlink.org/api',
 
     //  Staging (iipdevpart)
-    //cAPIKey : 'T5nBPqAwFGSYbUCy54HPLMY6jODGfAZdIY642wh3',
+    cAPIKey : 'T5nBPqAwFGSYbUCy54HPLMY6jODGfAZdIY642wh3',
     //  Production (iipvender)
-    cAPIKey : 'AgOfVHFvGag3ItIoE2rbIfzoqGyjwy7EkBhq8eBm',
+    //cAPIKey : 'AgOfVHFvGag3ItIoE2rbIfzoqGyjwy7EkBhq8eBm',
     // cCallbackToken : '0dc06c15-ba53-40e2-95d1-7b1cfbf6c27a',
     
 };
