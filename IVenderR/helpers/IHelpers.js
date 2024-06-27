@@ -134,11 +134,11 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
     //const user = await db.Users.findOne({where:{strAgentCode:strAgentCode, strSecretCode:strSecretCode}});
     const user = await db.Users.findOne({where:{strAgentCode:strAgentCode}});
 
-    let strCallbackURL = strReturnURL;
-    if ( strReturnURL != 'https://tlrp888.uk/game' && strReturnURL != 'http://tlrp888.uk/game' )
-    {
-        strCallbackURL = 'https://tlrp888.uk/game';
-    }
+    // let strCallbackURL = strReturnURL;
+    // if ( strReturnURL != 'https://tlrp888.uk/game' && strReturnURL != 'http://tlrp888.uk/game' )
+    // {
+    //     strCallbackURL = 'https://tlrp888.uk/game';
+    // }
         
 
     if ( null != user )
@@ -153,8 +153,8 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
                     strLaunchToken:strLaunchToken,
                     strAgentCode: strAgentCode,
                     strSecretCode: strSecretCode,
-                    //strCallbackURL: user.strCallbackURL,
-                    strCallbackURL: strCallbackURL,
+                    strCallbackURL: user.strCallbackURL,
+                    //strCallbackURL: strCallbackURL,
                     //iAuth:0
                 }
             );
@@ -180,8 +180,8 @@ exports.UpdateToken = async (strID, strToken, strLaunchToken, strAgentCode, strS
                 strToken: strToken,
                 strAgentCode: strAgentCode,
                 strSecretCode: strSecretCode,
-                //strCallbackURL: user.strCallbackURL,
-                strCallbackURL: strCallbackURL,
+                strCallbackURL: user.strCallbackURL,
+                //strCallbackURL: strCallbackURL,
                 //iAuth:0
             }
         );
